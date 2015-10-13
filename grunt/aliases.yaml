@@ -1,0 +1,77 @@
+# ==================================
+# Default, command "grunt".
+# Customizer
+# ==================================
+default:
+    #dev
+    - 'dev' #subtask
+    #Localhost
+    - 'localhost' #subtask
+    #Watch
+    - 'watch'
+
+# ==================================
+# Alias for Customizer
+# ==================================
+customizer:
+    #Big
+    - 'default'
+
+
+# ==================================
+# Publish Customizer Site
+# ==================================
+publishCustomizerSite:
+    #Big
+    - 'dev' #subtask
+    #Big
+    - 'pushCustomizerSite' #subtask
+
+# ==================================
+# Alias for publishCustomizerSite task
+# ==================================
+pcs:
+    #Publish Customizer Site
+    - 'publishCustomizerSite'
+
+
+# ==================================
+# Code linters
+# ==================================
+check:
+    #jscs
+    - 'jscs'
+    #jshint
+    - 'jshint'
+
+
+# ==================================
+# SUBTASKS  ========================
+# ==================================
+dev:
+    #Dev
+    - 'clean:tmp'
+    - 'clean:tempFolder'
+    - 'copy:customizerTemplates'
+    - 'replace:customizerHead'
+    - 'replace:customizerScript'
+    - 'replace:customizerBody'
+    - 'copy:customizerFiles'
+    - 'copy:customizerComponents'
+    - 'concurrent:customizer'
+    - 'jscs'
+    - 'jshint'
+
+localhost:
+    #Localhost
+    - 'connect:localhost'
+    - 'notify:server'
+
+pushCustomizerSite:
+    # Push to remote server with creating new branch
+    - 'buildcontrol:customizer'
+    - 'notify:site'
+
+# ==================================
+# ==================================
+

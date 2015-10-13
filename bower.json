@@ -1,0 +1,7 @@
+{
+  "name": "customizer",
+  "devDependencies": {
+    "spectrum": "1.7.1",
+    "less": "2.5.3"
+  }
+}
