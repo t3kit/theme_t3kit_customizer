@@ -1,7 +1,7 @@
 {
-  "name": "felayout",
+  "name": "theme_t3kit_customizer",
   "version": "0.0.1",
-  "description": "Front-End layout for TYPOkit project.",
+  "description": "",
   "license": "MIT",
   "repository": "",
   "devDependencies": {

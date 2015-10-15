@@ -3,7 +3,7 @@ module.exports = {
         postprocess: require('pretty'),
         flatten: true,
         layout: 'default.hbs',
-        helpers: 'felayout_name/grunt/helpers/helper-*.js',
+        helpers: '<%= felayout %>/grunt/helpers/helper-*.js',
     },
     customizer: {
         options: {
