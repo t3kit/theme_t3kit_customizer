@@ -1,0 +1,16 @@
+{{#is this.displayCategory "basic"}}
+<div class="customizer-integer-input" data-display="basic">
+{{/is}}
+{{#is this.displayCategory "advanced"}}
+<div class="customizer-integer-input" data-display="advanced">
+{{/is}}
+{{#is this.displayCategory "expert"}}
+<div class="customizer-integer-input" data-display="expert">
+{{/is}}
+    <label class="customizer-integer-input__title">{{title}}
+        <input class="js__customizer-integer-input__val customizer-integer-input__val" type="text" placeholder="{{placeholder}}" data-lessvar="{{integerVar}}">
+        <div class="customizer-integer-input__return-to-default js__customizer-integer-input__return-to-default">
+            <span class="customizer-integer-input__tooltip">Return to default value</span>
+        </div>
+    </label>
+</div>

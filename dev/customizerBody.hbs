@@ -1,120 +1,232 @@
-<div class="customizer js__customizer">
-    <div class="customizer__header">
-    </div>
-    <div class="customizer__body">
-        <h5 class="customizer__body-header">Main</h5>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Main-color</span><span class="js__color-picker__val color-picker__val _customizer-main-color" data-lessvar="@main-color" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Main Body Bg</span><span class="js__color-picker__val color-picker__val _customizer-main-body-bg" data-lessvar="@main-body-bg" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Main Text Color</span><span class="js__color-picker__val color-picker__val _customizer-main-text-color" data-lessvar="@main-text-color" ></span></div>
-        </div>
-        <h5 class="customizer__body-header">Header</h5>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Header Top Color</span><span class="js__color-picker__val color-picker__val _customizer-header-top-color" data-lessvar="@header-top-color" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Header Border Color</span><span class="js__color-picker__val color-picker__val _customizer-header-border-color" data-lessvar="@header-border-color" ></span></div>
-        </div>
-        <div class="customizer__body-item">
-            <label class="customizer__body-item-label">Header Top Height
-                <input class="js__customizer__body-item-label-val customizer__body-item-label-val" type="text" placeholder="50px" data-lessvar="@header-top-height">
-            </label>
-            {{!-- themes.configuration.colors.headerTopHeight = 50px --}}
-            {{!-- <div class="color-picker__title"><span>Header Border Color</span><span class="js__color-picker__val color-picker__val _customizer-header-border-color" data-lessvar="@header-border-color" ></span></div> --}}
-        </div>
-        <h5 class="customizer__body-header">Navigation</h5>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Nav Link Color</span><span class="js__color-picker__val color-picker__val _customizer-nav-link-color" data-lessvar="@nav-link-color" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Nav Link Hover Bg</span><span class="js__color-picker__val color-picker__val _customizer-nav-link-hover-background" data-lessvar="@nav-link-hover-background" ></span></div>
-        </div>
-        <div class="customizer__body-item">
-            <label class="customizer__body-item-label">Nav Height
-                <input class="js__customizer__body-item-label-val customizer__body-item-label-val" type="text" placeholder="64px" data-lessvar="@nav-height">
-            </label>
-        </div>
-        {{!-- themes.configuration.colors.navHeight = 64px --}}
-        <h5 class="customizer__body-header">Footer</h5>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Footer Background</span><span class="js__color-picker__val color-picker__val _customizer-footer-background" data-lessvar="@footer-background" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Footer Color</span><span class="js__color-picker__val color-picker__val _customizer-footer-color" data-lessvar="@footer-color" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Footer Link Color</span><span class="js__color-picker__val color-picker__val _customizer-footer-link-color" data-lessvar="@footer-link-color" ></span></div>
-        </div>
-        <div class="color-picker">
-            <div class="color-picker__title"><span>Footer Link Hover Color</span><span class="js__color-picker__val color-picker__val _customizer-footer-link-hover-color" data-lessvar="@footer-link-hover-color" ></span></div>
-        </div>
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Type of header</h5>
+<!-- Customizer block header [end]-->
 
-    </div>
-    <div class="customizer__footer">
-        <a href="" class="customizer__footer-btn btn btn-default js__customizer__footer-btn-clear-cache" >Clear cache</a>
-        <a href="" class="customizer__footer-btn btn btn-default js__customizer__footer-btn" >Generate TYPO3 Theme config</a>
-    </div>
-    <div class="js__customizer__hide-btn customizer__hide-btn"></div>
-</div>
+<!-- Customizer block body [begin] -->
+<!-- Customizer block body [end] -->
 
-<div class="js__customizer-modal-overlay customizer-modal-overlay"></div>
-<div class="customizer-modal">
-    <textarea rows="20" class="customizer-modal__text js__customizer-modal__text" ></textarea>
-</div>
 
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Main Color</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Main-color"
+    colorVar="@main-color"
+    linkedVar=false
+}}
+<!-- Customizer block body [end] -->
+
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Main Body</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Main Body Bg"
+    colorVar="@main-body-bg"
+    linkedVar=false
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Main Text Color"
+    colorVar="@main-text-color"
+    linkedVar=false
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Main Border Color"
+    colorVar="@border-color"
+    linkedVar=false
+}}
+<!-- Customizer block body [end]-->
+
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Main Links</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Main Link Color"
+    colorVar="@main-link-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Main Link Hover Color"
+    colorVar="@main-link-hover-color"
+    linkedVar=true
+}}
+<!-- Customizer block body [end]-->
 
 
 
 
-        {{!-- <textarea wrap="off" rows="20" class="customizer-modal__input js__customizer-modal__input" ></textarea> --}}
 
-{{!-- <div class="checkbox">
-    <label><input type="checkbox" value="">bla bla</label>
-</div>
- --}}
-{{!-- <input class="ttt" name="vars" type="text" placeholder="35px" data-bbb="@main-color" > --}}
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Header Top</h5>
+<!-- Customizer block header [end]-->
 
-{{!-- <div id="colorPicker" data-lessvar="@main-body-bg"></div> --}}
+<!-- Customizer block body [begin] -->
 
-
-
-{{!-- <div class="color-picker customizer__body-item">
-    <div id="colorPicker" class="color-picker__rrr" data-lessvar="@rrr"></div>
-</div>
- --}}
+<!-- Customizer block body [end]-->
 
 
 
 
 
 
+    <!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Header Middle</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'integerLessVar'
+    displayCategory= "basic"
+    title="Logo Left"
+    integerVar="@logo-left"
+    placeholder="40px"
+}}
+{{ renderContent 'integerLessVar'
+    displayCategory= "basic"
+    title="Logo Top"
+    integerVar="@logo-top"
+    placeholder="24px"
+}}
+{{ renderContent 'integerLessVar'
+    displayCategory= "basic"
+    title="Logo Width"
+    integerVar="@logo-width"
+    placeholder="120px"
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Header Middle Background Color"
+    colorVar="@header-middle-bg-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Header Middle Border Color"
+    colorVar="@header-border-color"
+    linkedVar=true
+}}
+{{ renderContent 'integerLessVar'
+    displayCategory= "advanced"
+    title="Header Middle Height"
+    integerVar="@header-middle-height"
+    placeholder="120px"
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Social Icons Background Color"
+    colorVar="@social-icons-bg-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Social Icons Hover Color"
+    colorVar="@social-icons-hover-color"
+    linkedVar=true
+}}
+<!-- Customizer block body [end]-->
 
 
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Header Main Menu</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Background Color"
+    colorVar="@nav-background-color"
+    linkedVar=true
+}}
+{{ renderContent 'integerLessVar'
+    displayCategory= "advanced"
+    title="Navigation Height"
+    integerVar="@nav-height"
+    placeholder="64px"
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Link Active Color"
+    colorVar="@nav-link-active-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Link Active Hover Color"
+    colorVar="@nav-link-active-hover-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Link Arrow Color"
+    colorVar="@nav-link-arrow-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Link Color"
+    colorVar="@nav-link-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Link Hover Background"
+    colorVar="@nav-link-hover-background"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Link Hover Color"
+    colorVar="@nav-link-hover-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Navigation Search Button Color"
+    colorVar="@nav-search-btn-color"
+    linkedVar=true
+}}
+<!-- Customizer block body [end]-->
 
 
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Footer Colors</h5>
+<!-- Customizer block header [end]-->
 
-
-
-
-
-
-
-
-
-{{!-- themes.configuration.colors.navHeight = 64px --}}
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Footer Background"
+    colorVar="@footer-background"
+    linkedVar=false
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Footer Color"
+    colorVar="@footer-color"
+    linkedVar=false
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Footer Link Color"
+    colorVar="@footer-link-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Footer Link Hover Color"
+    colorVar="@footer-link-hover-color"
+    linkedVar=true
+}}
+<!-- Customizer block body [end]-->

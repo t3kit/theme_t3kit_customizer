@@ -49,7 +49,9 @@ module.exports = {
             'se.svg',
             'ch.svg',
             'gb.svg',
-            'us.svg'
+            'us.svg',
+            'ua.svg',
+            'ro.svg'
         ]
     },
     customizerTemplates: {
@@ -79,6 +81,7 @@ module.exports = {
         cwd: 'dev',
         dest: '<%= temp %>',
         src: [
+            'bower_components/colorPicker/jqColorPicker.min.js',
             'bower_components/less/dist/less.min.js',
             'bower_components/spectrum/spectrum.css',
             'bower_components/spectrum/spectrum.js'

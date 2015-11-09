@@ -45,7 +45,7 @@ module.exports = {
         replacements: [
             {
                 from: '<!-- Header partials -->',
-                to: '{{> customizerBody}}'
+                to: '{{> customizerLayout}}'
             }
         ]
     }
