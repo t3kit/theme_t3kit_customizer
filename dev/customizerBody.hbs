@@ -66,20 +66,30 @@
 <!-- Customizer block body [end]-->
 
 
-
-
-
 <!-- Customizer block header [begin]-->
 <h5 class="customizer-block__header">Header Top</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
-
+{{ renderContent 'dimensionLessVar'
+    displayCategory= "advanced"
+    title="Header Top Height"
+    integerVar="@header-top-height"
+    placeholder="50px"
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Header Top Background Color"
+    colorVar="@header-top-bg-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Header Top Color"
+    colorVar="@header-top-color"
+    linkedVar=true
+}}
 <!-- Customizer block body [end]-->
-
-
-
-
 
 
     <!-- Customizer block header [begin]-->
@@ -87,19 +97,19 @@
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
-{{ renderContent 'integerLessVar'
+{{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Left"
     integerVar="@logo-left"
     placeholder="40px"
 }}
-{{ renderContent 'integerLessVar'
+{{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Top"
     integerVar="@logo-top"
     placeholder="24px"
 }}
-{{ renderContent 'integerLessVar'
+{{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Width"
     integerVar="@logo-width"
@@ -117,7 +127,7 @@
     colorVar="@header-border-color"
     linkedVar=true
 }}
-{{ renderContent 'integerLessVar'
+{{ renderContent 'dimensionLessVar'
     displayCategory= "advanced"
     title="Header Middle Height"
     integerVar="@header-middle-height"
@@ -149,7 +159,7 @@
     colorVar="@nav-background-color"
     linkedVar=true
 }}
-{{ renderContent 'integerLessVar'
+{{ renderContent 'dimensionLessVar'
     displayCategory= "advanced"
     title="Navigation Height"
     integerVar="@nav-height"
@@ -195,6 +205,94 @@
     displayCategory= "advanced"
     title="Navigation Search Button Color"
     colorVar="@nav-search-btn-color"
+    linkedVar=true
+}}
+<!-- Customizer block body [end]-->
+
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Breadcrumbs</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Breadcrumbs Background"
+    colorVar="@breadcrumbs-background"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Breadcrumbs Link Color"
+    colorVar="@breadcrumbs-link-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Breadcrumbs Link Active Color"
+    colorVar="@breadcrumbs-link-active-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Breadcrumbs Link Hover Color"
+    colorVar="@breadcrumbs-link-hover-color"
+    linkedVar=true
+}}
+<!-- Customizer block body [end]-->
+
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header">Sub Navigation</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Background"
+    colorVar="@sub-navigation-background"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Border"
+    colorVar="@sub-navigation-border"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Active Border"
+    colorVar="@sub-navigation-active-border"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Link Color"
+    colorVar="@sub-navigation-link-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Link Hover Color"
+    colorVar="@sub-navigation-link-hover-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Link Hover Bg"
+    colorVar="@sub-navigation-link-hover-bg"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Link Active Color"
+    colorVar="@sub-navigation-link-active-color"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Sub Navigation Link Active Bg"
+    colorVar="@sub-navigation-link-active-bg"
     linkedVar=true
 }}
 <!-- Customizer block body [end]-->

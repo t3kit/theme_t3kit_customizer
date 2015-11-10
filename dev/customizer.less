@@ -304,9 +304,9 @@
 }
 
 
-// Integer Less Var
+// Dimension Less Var
 // ---------------------------------------------------------
-.customizer-integer-input {
+.customizer-dimension-input {
     width: 100%;
     height: 26px;
     z-index: 11000;
@@ -314,7 +314,7 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px 0;
 }
-.customizer-integer-input__title{
+.customizer-dimension-input__title{
     width: 100%;
     height: 100%;
     position: relative;
@@ -323,7 +323,7 @@
     padding-left: 4px;
     font-weight: 400;
 }
-.customizer-integer-input__val{
+.customizer-dimension-input__val{
     display: block;
     position: absolute;
     height: 100%;
@@ -339,8 +339,8 @@
 }
 
 
-// Integer Less Var Tooltip
-.customizer-integer-input__tooltip{
+// dimension Less Var Tooltip
+.customizer-dimension-input__tooltip{
     opacity: 0;
     visibility: hidden;
     transition: opacity .2s 0s,visibility 0s .2s;
@@ -362,8 +362,8 @@
 }
 
 
-// Integer Less Var Return to default
-.customizer-integer-input__return-to-default{
+// dimension Less Var Return to default
+.customizer-dimension-input__return-to-default{
     display: block;
     position: absolute;
     top: 0;
@@ -374,7 +374,7 @@
     cursor: pointer;
 }
 
-.customizer-integer-input__return-to-default:before, .customizer-integer-input__return-to-default:after {
+.customizer-dimension-input__return-to-default:before, .customizer-dimension-input__return-to-default:after {
     content: '';
     position: absolute;
     display: inline-block;
@@ -385,17 +385,17 @@
     margin-left: -7px;
     background: #ccc;
 }
-.customizer-integer-input__return-to-default:before {
+.customizer-dimension-input__return-to-default:before {
     transform: rotate(135deg);
 }
-.customizer-integer-input__return-to-default:after {
+.customizer-dimension-input__return-to-default:after {
     transform: rotate(-135deg);
 }
-.customizer-integer-input__return-to-default:hover .customizer-integer-input__tooltip {
+.customizer-dimension-input__return-to-default:hover .customizer-dimension-input__tooltip {
     opacity: 1;
     visibility: visible;
 }
-.customizer-integer-input__return-to-default .customizer-integer-input__tooltip {
+.customizer-dimension-input__return-to-default .customizer-dimension-input__tooltip {
     top: 0;
     left: -192px;
     width: 140px;

@@ -11,8 +11,13 @@ jQuery(function($) {
     var $customizer = $('.js__customizer');
     var $customizerHideBtn = $('.js__customizer__hide-btn');
 
+    // Color Picker vars
     var $colorPicker = $('.js__customizer-color-picker__val');
-    var $integerInput = $('.js__customizer-integer-input__val');
+    var $colorPickerReturnToDefault = $('.js__customizer-color-picker__return-to-default');
+
+    // Dimension vars
+    var $dimensionInput = $('.js__customizer-dimension-input__val');
+    var $dimensionReturnToDefault = $('.js__customizer-dimension-input__return-to-default');
 
     var $customizerFooterBtnClearCache = $('.js__customizer-footer__btn-clear-cache');
     var $customizerFooterBtnTypoConf = $('.js__customizer-footer__btn-typo-conf');
@@ -31,48 +36,43 @@ jQuery(function($) {
         opacity: false,
         doRender: false,
 
-        // demo on how to make plugins... mobile support plugin
         buildCallback: function($elm) {
-            $elm.prepend('<div class="cp-disp"></div>');
-            $('.color').on('click', function(e) {
-                e.preventDefault && e.preventDefault();
-            });
-
             var colorInstance = this.color;
             var that = this;
-
-            $elm.prepend('<div class="cp-panel">' +
-                '<input type="text" class="cp-HEX" />' +
-            '</div>').on('change', 'input', function() {
-                var value = this.value,
-                className = this.className,
-                type = className.split('-')[1],
-                color = {};
-                color[type] = value;
-                colorInstance.setColor(type === 'HEX' ? value : color,
-                    type === 'HEX' ? 'HEX' : /(?:r|g|b)/.test(type) ? 'rgb' : 'hsv');
+            $elm.prepend('<div class="cp-disp"></div>');
+            $elm.append('<div class="cp-color-input">' +
+                '<input type="text" class="cp-color-input__cp-HEX" />' +
+                '</div>').on('change', 'input', function() {
+                var value = this.value;
+                colorInstance.setColor(value, 'HEX');
                 that.render();
                 this.blur();
             });
         },
-        cssAddon: // could also be in a css file instead
-            '.cp-disp{padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}' +
+        cssAddon:
+            '.cp-color-picker{ border-radius:0;}' +
+            '.cp-color-input{ width:100px; clear:both; height:32px}' +
+            '.cp-color-input__cp-HEX{ width:100px; height:26px, color:#000; font-size: 16px;}' +
+            '.cp-disp{padding:10px; margin-bottom:6px; font-size:19px; height:34px; line-height:20px}' +
             '.cp-xy-slider{width:200px; height:200px;}' +
             '.cp-xy-cursor{width:16px; height:16px; border-width:2px; margin:-8px}' +
             '.cp-z-slider{height:200px; width:40px;}' +
-            '.cp-z-cursor{border-width:8px; margin-top:-8px;}' +
-            '.cp-alpha{height:40px;}' +
-            '.cp-alpha-cursor{border-width: 8px; margin-left:-8px;}',
-
+            '.cp-z-cursor{border-width:8px; margin-top:-8px;}',
         renderCallback: function($elm, toggled) {
             var colors = this.color.colors;
 
             $('.cp-disp')
                 .css({
                     backgroundColor: '#' + colors.HEX,
-                    // color: colors.RGBLuminance > 0.22 ? '#222' : '#ddd'
+                    color: colors.RGBLuminance > 0.22 ? '#222' : '#ddd'
                 })
                 .text('#' + colors.HEX);
+            $('.cp-color-input__cp-HEX')
+                .css({
+                    backgroundColor: '#' + colors.HEX,
+                    color: colors.RGBLuminance > 0.22 ? '#222' : '#ddd'
+                })
+                .val('#' + colors.HEX);
             $('.cp-color-picker')
                 .css({
                     top: $elm.offset().top - $customizer.offset().top + $customizer.position().top + 'px',
@@ -81,25 +81,24 @@ jQuery(function($) {
                 });
             if (toggled || toggled === undefined) {
                 lessvar = $elm[0].dataset.lessvar;
-                lessObj[lessvar] = '#' + this.color.colors.HEX;
+                lessObj[lessvar] = '#' + colors.HEX;
                 less.modifyVars(lessObj);
                 localStorage.setItem('lessObj', JSON.stringify(lessObj));
             }
         }
     });
+
     // Color Picker Return to default color
-    $('.js__customizer-color-picker__return-to-default').on('click', function(e) {
+    $colorPickerReturnToDefault.on('click', function(e) {
         e.preventDefault();
         lessvar = $(this).prev('.js__customizer-color-picker__val').data('lessvar');
-        // console.log(lessvar);
-        // console.log('lessvar');
         delete lessObj[lessvar];
         less.modifyVars(lessObj);
         localStorage.setItem('lessObj', JSON.stringify(lessObj));
     });
 
-    // Customizer Integer Input
-    $integerInput.each(function() {
+    // Customizer Dimension
+    $dimensionInput.each(function() {
         lessvar = $(this).data('lessvar');
         // console.log(lessObj[lessvar]);
         // console.log(lessObj[lessvar] !== undefined);
@@ -107,7 +106,7 @@ jQuery(function($) {
             $(this).val(lessObj[lessvar]);
         }
     });
-    $integerInput.on('change', function(e) {
+    $dimensionInput.on('change', function(e) {
         e.preventDefault();
         lessvar = $(this).data('lessvar');
         lessObj[lessvar] = $(this).val();
@@ -115,11 +114,11 @@ jQuery(function($) {
         localStorage.setItem('lessObj', JSON.stringify(lessObj));
     });
 
-    // Customizer Integer Input Return to default
-    $('.js__customizer-integer-input__return-to-default').on('click', function(e) {
+    // Customizer Dimension Return to default
+    $dimensionReturnToDefault.on('click', function(e) {
         e.preventDefault();
-        lessvar = $(this).prev('.js__customizer-integer-input__val').data('lessvar');
-        $(this).prev('.js__customizer-integer-input__val').val('');
+        lessvar = $(this).prev('.js__customizer-dimension-input__val').data('lessvar');
+        $(this).prev('.js__customizer-dimension-input__val').val('');
         delete lessObj[lessvar];
         less.modifyVars(lessObj);
         localStorage.setItem('lessObj', JSON.stringify(lessObj));
@@ -152,7 +151,7 @@ jQuery(function($) {
             '"': '',
             '-': '',
             ',': '\n',
-            '@': 'themes.configuration.colors.'
+            '@': 'themes.configuration.var.'
         };
         lessObjStr = lessObjStr.replace(/({|}|-|:|"|,|@)/gi, function(matched) {
             return mapLessObj[matched];
@@ -181,6 +180,7 @@ jQuery(function($) {
         $checkbox.on('click', function() {
             if (!$(this).prop('checked')) {
                 $var.hide();
+// TODO ++++++++++++++++
                 // blockHeaders.each(function() {
                 //     if ($(this).next().is('div') && blockHeaders.next().is(':hidden')) {
                 //         $(this).hide();
@@ -202,3 +202,4 @@ jQuery(function($) {
     customizerDisplay($displayExpert, $expert);
 
 });
+
