@@ -1,90 +1,42 @@
 module.exports = {
-    fonts: {
+
+    felayoutSmall: {
         expand: true,
         dot: true,
-        cwd: '<%= dev %>',
+        cwd: '<%= felayout %>/small',
+        dest: 'temp',
+        src: [
+            '**'
+        ]
+    },
+    customizerToRoot: {
+        expand: true,
+        dot: true,
+        cwd: '<%= temp %>/copyToRoot',
         dest: '<%= temp %>',
         src: [
-            'fonts/{,*/}*.*'
-        ]
-    },
-    images: {
-        expand: true,
-        dot: true,
-        cwd: '<%= dev %>',
-        dest: '<%= temp %>',
-        src: [
-            'images/{,*/}*.*'
-        ]
-    },
-    toRoot: {
-        expand: true,
-        dot: true,
-        cwd: '<%= dev %>/copyToRoot',
-        dest: '<%= temp %>',
-        src: [
-            '{,*/}*.*'
-        ]
-    },
-    flags: {
-        expand: true,
-        dot: true,
-        cwd: '<%= bc %>/flag-icon-css/flags/4x3/',
-        dest: '<%= temp %>/flags/4x3/',
-        src: [
-            'be.svg',
-            'dk.svg',
-            'ee.svg',
-            'fl.svg',
-            'fr.svg',
-            'fi.svg',
-            'de.svg',
-            'it.svg',
-            'nl.svg',
-            'nz.svg',
-            'no.svg',
-            'pl.svg',
-            'pt.svg',
-            'es.svg',
-            'se.svg',
-            'ch.svg',
-            'gb.svg',
-            'us.svg',
-            'ua.svg',
-            'ro.svg'
-        ]
-    },
-    customizerTemplates: {
-        expand: true,
-        dot: true,
-        cwd: '<%= dev %>',
-        dest: '.tmp',
-        src: [
-            'templates/parts/**',
-            'templates/layouts/{,*/}*.*'
-            // 'styles/customVariables.less'
+            '*'
         ]
     },
     customizerFiles: {
         expand: true,
         dot: true,
-        cwd: 'dev',
+        cwd: '<%= dev %>',
         dest: '<%= temp %>',
         src: [
-            'customizer.js',
-            'customizer.less'
+            '**/*.js',
+            '**/*.less',
+            '!bower_components/**'
         ]
     },
-    customizerComponents: {
+    customizerBowComponents: {
         expand: true,
         dot: true,
-        cwd: 'dev',
+        cwd: '<%= dev %>/bower_components',
         dest: '<%= temp %>',
         src: [
-            'bower_components/colorPicker/jqColorPicker.min.js',
-            'bower_components/less/dist/less.min.js',
-            'bower_components/spectrum/spectrum.css',
-            'bower_components/spectrum/spectrum.js'
+            'colorPicker/jqColorPicker.min.js',
+            'less/dist/less.min.js'
         ]
     }
 };

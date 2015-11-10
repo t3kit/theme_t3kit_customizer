@@ -1,6 +1,5 @@
 @import "main.less";
 
-
 .customizer{
     position: fixed;
     top: 110px;
@@ -403,51 +402,110 @@
 
 
 
+// Element status Var
+// ---------------------------------------------------------
+.customizer-element-status {
+    width: 100%;
+    height: 26px;
+    z-index: 11000;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+.customizer-element-status__title{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    line-height: 24px;
+    font-size: 11px;
+    padding-left: 4px;
+    font-weight: 400;
+}
+.customizer-element-status__val {
+    display: none;
+}
+.customizer-element-status__checkbox{
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    right: 2px;
+    top: 2px;
+    cursor: pointer;
+    border: 1px solid #aaa;
+}
+.customizer-element-status__val + .customizer-element-status__checkbox:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    right: 2px;
+}
+.customizer-element-status__val:checked + .customizer-element-status__checkbox:before {
+    background: #288FB4;
+}
 
-// COLORS
-[data-lessvar="@main-color"] {background: @main-color}
-[data-lessvar="@main-body-bg"] {background: @main-body-bg}
-[data-lessvar="@main-text-color"] {background: @main-text-color}
-[data-lessvar="@border-color"] {background: @border-color}
-[data-lessvar="@main-link-color"] {background: @main-link-color}
-[data-lessvar="@main-link-hover-color"] {background: @main-link-hover-color}
-[data-lessvar="@header-top-height"] {background: @header-top-height}
-[data-lessvar="@header-top-bg-color"] {background: @header-top-bg-color}
-[data-lessvar="@header-top-color"] {background: @header-top-color}
-[data-lessvar="@header-middle-height"] {background: @header-middle-height}
-[data-lessvar="@header-middle-bg-color"] {background: @header-middle-bg-color}
-[data-lessvar="@header-border-color"] {background: @header-border-color}
-[data-lessvar="@logo-top"] {background: @logo-top}
-[data-lessvar="@logo-left"] {background: @logo-left}
-[data-lessvar="@logo-width"] {background: @logo-width}
-[data-lessvar="@nav-height"] {background: @nav-height}
-[data-lessvar="@nav-link-color"] {background: @nav-link-color}
-[data-lessvar="@nav-link-hover-color"] {background: @nav-link-hover-color}
-[data-lessvar="@nav-link-active-color"] {background: @nav-link-active-color}
-[data-lessvar="@nav-link-active-hover-color"] {background: @nav-link-active-hover-color}
-[data-lessvar="@nav-link-hover-background"] {background: @nav-link-hover-background}
-[data-lessvar="@nav-link-arrow-color"] {background: @nav-link-arrow-color}
-[data-lessvar="@nav-background-color"] {background: @nav-background-color}
-[data-lessvar="@nav-search-btn-color"] {background: @nav-search-btn-color}
-[data-lessvar="@social-icons-bg-color"] {background: @social-icons-bg-color}
-[data-lessvar="@social-icons-hover-color"] {background: @social-icons-hover-color}
-[data-lessvar="@breadcrumbs-background"] {background: @breadcrumbs-background}
-[data-lessvar="@breadcrumbs-link-color"] {background: @breadcrumbs-link-color}
-[data-lessvar="@breadcrumbs-link-active-color"] {background: @breadcrumbs-link-active-color}
-[data-lessvar="@breadcrumbs-link-hover-color"] {background: @breadcrumbs-link-hover-color}
-[data-lessvar="@sub-navigation-background"] {background: @sub-navigation-background}
-[data-lessvar="@sub-navigation-border"] {background: @sub-navigation-border}
-[data-lessvar="@sub-navigation-active-border"] {background: @sub-navigation-active-border}
-[data-lessvar="@sub-navigation-link-color"] {background: @sub-navigation-link-color}
-[data-lessvar="@sub-navigation-link-hover-color"] {background: @sub-navigation-link-hover-color}
-[data-lessvar="@sub-navigation-link-hover-bg"] {background: @sub-navigation-link-hover-bg}
-[data-lessvar="@sub-navigation-link-active-color"] {background: @sub-navigation-link-active-color}
-[data-lessvar="@sub-navigation-link-active-bg"] {background: @sub-navigation-link-active-bg}
-[data-lessvar="@footer-background"] {background: @footer-background}
-[data-lessvar="@footer-color"] {background: @footer-color}
-[data-lessvar="@footer-link-color"] {background: @footer-link-color}
-[data-lessvar="@footer-link-hover-color"] {background: @footer-link-hover-color}
+// Element status Var Tooltip
+.customizer-element-status__tooltip{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s 0s,visibility 0s .2s;
+    // width: 140px;
+    background: #555;
+    color: #fff;
+    position: absolute;
+    // top: 0;
+    // left: -172px;
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 1;
+    height: 20px;
+    z-index: 1000;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+// Element status Var Return to default
+.customizer-element-status__return-to-default{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -26px;
+    width: 26px;
+    line-height: 1;
+    height: 100%;
+    cursor: pointer;
+}
+
+.customizer-element-status__return-to-default:before, .customizer-element-status__return-to-default:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    height: 2px;
+    width: 14px;
+    top: 50%;
+    left: 50%;
+    margin-left: -7px;
+    background: #ccc;
+}
+.customizer-element-status__return-to-default:before {
+    transform: rotate(135deg);
+}
+.customizer-element-status__return-to-default:after {
+    transform: rotate(-135deg);
+}
+.customizer-element-status__return-to-default:hover .customizer-element-status__tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+.customizer-element-status__return-to-default .customizer-element-status__tooltip {
+    top: 0;
+    left: -166px;
+    width: 140px;
+}
 
 
-
-
+@import "color.less";

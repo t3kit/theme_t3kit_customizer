@@ -8,11 +8,11 @@ module.exports = {
             ]
         }]
     },
-    tmp: {
+    copyToRootFolder: {
         files: [{
             dot: true,
             src: [
-                '.tmp/*'
+                '<%= temp %>/copyToRoot',
             ]
         }]
     }

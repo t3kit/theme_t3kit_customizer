@@ -1,0 +1,47 @@
+<head>
+
+    {{>headMeta}}
+
+    <!-- Favicons -->
+    {{>headFavicons}}
+
+    <!-- Fonts -->
+    {{>headFonts}}
+
+
+
+    <!-- Customizer -->
+    <link rel="stylesheet/less" type="text/css" href="bootstrap.less">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet/less" type="text/css" href="header.less">
+    <link rel="stylesheet/less" type="text/css" href="customizer.less">
+    {{!-- <link rel="stylesheet" href="bower_components/spectrum/spectrum.css"> --}}
+    <script>
+        less = {
+          env: "development"
+          // useFileCache: false
+        };
+    </script>
+    <script src="less/dist/less.min.js"></script>
+    <script>
+        var lessObj = {};
+        var elemObj = {};
+        if (localStorage.hasOwnProperty('lessObj')) {
+            lessObj = JSON.parse(localStorage.getItem('lessObj'));
+            less.modifyVars(lessObj);
+        }
+        if (localStorage.hasOwnProperty('elemObj')) {
+            elemObj = JSON.parse(localStorage.getItem('elemObj'));
+        }
+    </script>
+
+
+
+    <!-- Scripts -->
+    {{>headScripts}}
+
+</head>
+
+
+
+

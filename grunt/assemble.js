@@ -3,15 +3,15 @@ module.exports = {
         postprocess: require('pretty'),
         flatten: true,
         layout: 'default.hbs',
-        helpers: '<%= felayout %>/grunt/helpers/helper-*.js',
+        helpers: '<%= felayoutTmplHelpers %>',
     },
     customizer: {
         options: {
-            layoutdir: '.tmp/templates/layouts',
-            partials: ['.tmp/templates/parts/**/*.hbs', 'dev/**/*.hbs']
+            layoutdir: '<%= customizerLayouts %>',
+            partials: ['<%= felayoutPartials %>/**/*.hbs', '<%= customizerPartials %>/**/*.hbs']
         },
         files: {
-            '<%= temp %>': ['<%= dev %>/templates/pages/**/*.hbs']
+            '<%= temp %>': ['<%= felayoutPages %>/**/*.hbs']
         },
     }
 };

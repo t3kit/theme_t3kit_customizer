@@ -1,8 +1,11 @@
 /* global less */
 /* global lessObj */
 /* global lessObj:true */
+/* global elemObj */
+/* global elemObj:true */
 
 var lessvar;
+var elemvar;
 jQuery(function($) {
 
     // Save variables
@@ -18,6 +21,10 @@ jQuery(function($) {
     // Dimension vars
     var $dimensionInput = $('.js__customizer-dimension-input__val');
     var $dimensionReturnToDefault = $('.js__customizer-dimension-input__return-to-default');
+
+    // Element Status vars
+    var $elementStatus = $('.js__customizer-element-status__val');
+    var $elementStatusReturnToDefault = $('.js__customizer-element-status__return-to-default');
 
     var $customizerFooterBtnClearCache = $('.js__customizer-footer__btn-clear-cache');
     var $customizerFooterBtnTypoConf = $('.js__customizer-footer__btn-typo-conf');
@@ -100,8 +107,6 @@ jQuery(function($) {
     // Customizer Dimension
     $dimensionInput.each(function() {
         lessvar = $(this).data('lessvar');
-        // console.log(lessObj[lessvar]);
-        // console.log(lessObj[lessvar] !== undefined);
         if (lessObj[lessvar] !== undefined) {
             $(this).val(lessObj[lessvar]);
         }
@@ -124,6 +129,64 @@ jQuery(function($) {
         localStorage.setItem('lessObj', JSON.stringify(lessObj));
     });
 
+
+
+
+
+    // Customizer Element Status
+    $elementStatus.each(function() {
+        elemvar = $(this).data('elclass');
+        if (elemObj[elemvar] !== undefined) {
+            if (elemObj[elemvar]) {
+                $(elemvar).show();
+                $(this).prop('checked', true);
+            } else {
+                $(elemvar).hide();
+                $(this).prop('checked', false);
+            }
+        }
+    });
+    $elementStatus.on('click', function() {
+        elemvar = $(this).data('elclass');
+        if (!$(this).prop('checked')) {
+            elemObj[elemvar] = 0;
+            $(elemvar).hide();
+        } else {
+            elemObj[elemvar] = 1;
+            $(elemvar).show();
+        }
+        localStorage.setItem('elemObj', JSON.stringify(elemObj));
+    });
+    var defaultElemStatus = function() {
+        $elementStatus.each(function() {
+            elemvar = $(this).data('elclass');
+            if (elemObj[elemvar] !== undefined) {
+                if ($(this).attr('checked') === 'checked') {
+                    $(elemvar).show();
+                    $(this).prop('checked', true);
+                } else {
+                    $(elemvar).hide();
+                    $(this).prop('checked', false);
+                }
+            }
+        });
+    };
+
+    // Customizer Element Status Return to default
+    $elementStatusReturnToDefault.on('click', function(e) {
+        e.preventDefault();
+        elemvar = $(this).prevAll('.js__customizer-element-status__val');
+        if (elemvar.attr('checked') === 'checked') {
+            $(elemvar.data('elclass')).show();
+            elemvar.prop('checked', true);
+        } else {
+            $(elemvar.data('elclass')).hide();
+            elemvar.prop('checked', false);
+        }
+        delete elemObj[elemvar.data('elclass')];
+        localStorage.setItem('elemObj', JSON.stringify(elemObj));
+    });
+
     // Customizer Hide function
     $customizerHideBtn.on('click', function(e) {
         e.preventDefault();
@@ -133,9 +196,15 @@ jQuery(function($) {
     // Customizer Clear Cache
     $customizerFooterBtnClearCache.on('click', function(e) {
         e.preventDefault();
+        // less
         localStorage.removeItem('lessObj');
         lessObj = {};
         less.modifyVars(lessObj);
+
+        // elements stetus
+        defaultElemStatus();
+        localStorage.removeItem('elemObj');
+        elemObj = {};
     });
 
     // Customizer Generate TYPO3 Theme config

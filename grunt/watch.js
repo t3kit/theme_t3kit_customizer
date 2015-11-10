@@ -1,11 +1,11 @@
 module.exports = {
     customizer: {
-        files: ['dev/{,*/}*.*', '!dev/customizer.js'],
-        tasks: ['newer:copy:customizerFiles', 'assemble:customizer']
+        files: ['<%= dev %>/**/*.hbs'],
+        tasks: ['assemble:customizer']
     },
-    customizerJs: {
-        files: ['dev/customizer.js'],
-        tasks: ['newer:copy:customizerFiles', 'jscs', 'jshint']
+    customizerFiles: {
+        files: ['<%= dev %>/**/*.js', '<%= dev %>/**/*.less'],
+        tasks: ['newer:copy:customizerFiles']
     },
     livereload: {
         options: {
@@ -15,6 +15,7 @@ module.exports = {
         files: [
             '<%= temp %>/*.html',
             '<%= temp %>/*.css',
+            '<%= temp %>/*.less',
             '<%= temp %>/*.js',
             '<%= temp %>/images/{,*/}*.*',
             '<%= temp %>/fonts/{,*/}*.*',

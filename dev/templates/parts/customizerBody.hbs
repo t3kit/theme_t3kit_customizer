@@ -3,6 +3,12 @@
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
+{{ renderContent 'elementStatus'
+    displayCategory= "basic"
+    title="Show Header Top Lang Menu"
+    elclass=".header-top__language-menu"
+    visibleByDefault=true
+}}
 <!-- Customizer block body [end] -->
 
 
@@ -74,7 +80,7 @@
 {{ renderContent 'dimensionLessVar'
     displayCategory= "advanced"
     title="Header Top Height"
-    integerVar="@header-top-height"
+    dimensionVar="@header-top-height"
     placeholder="50px"
 }}
 {{ renderContent 'colorLessVar'
@@ -100,19 +106,19 @@
 {{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Left"
-    integerVar="@logo-left"
+    dimensionVar="@logo-left"
     placeholder="40px"
 }}
 {{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Top"
-    integerVar="@logo-top"
+    dimensionVar="@logo-top"
     placeholder="24px"
 }}
 {{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Width"
-    integerVar="@logo-width"
+    dimensionVar="@logo-width"
     placeholder="120px"
 }}
 {{ renderContent 'colorLessVar'
@@ -130,7 +136,7 @@
 {{ renderContent 'dimensionLessVar'
     displayCategory= "advanced"
     title="Header Middle Height"
-    integerVar="@header-middle-height"
+    dimensionVar="@header-middle-height"
     placeholder="120px"
 }}
 {{ renderContent 'colorLessVar'
@@ -162,7 +168,7 @@
 {{ renderContent 'dimensionLessVar'
     displayCategory= "advanced"
     title="Navigation Height"
-    integerVar="@nav-height"
+    dimensionVar="@nav-height"
     placeholder="64px"
 }}
 {{ renderContent 'colorLessVar'

@@ -4,9 +4,12 @@
 # ==================================
 default:
     #dev
-    - 'dev' #subtask
+    - 'clean:tempFolder'
+    - 'concurrent:customizer'
+    - 'clean:copyToRootFolder'
     #Localhost
-    - 'localhost' #subtask
+    - 'connect:localhost'
+    - 'notify:server'
     #Watch
     - 'watch'
 
@@ -14,25 +17,25 @@ default:
 # Alias for Customizer
 # ==================================
 customizer:
-    #Big
     - 'default'
 
 
 # ==================================
 # Publish Customizer Site
 # ==================================
-publishCustomizerSite:
+customizerSite:
     #Big
-    - 'dev' #subtask
+    - 'concurrent:customizer'
     #Big
-    - 'pushCustomizerSite' #subtask
+    - 'buildcontrol:customizer'
+    - 'notify:site'
 
 # ==================================
 # Alias for publishCustomizerSite task
 # ==================================
-pcs:
+cs:
     #Publish Customizer Site
-    - 'publishCustomizerSite'
+    - 'customizerSite'
 
 
 # ==================================
@@ -43,35 +46,3 @@ check:
     - 'jscs'
     #jshint
     - 'jshint'
-
-
-# ==================================
-# SUBTASKS  ========================
-# ==================================
-dev:
-    #Dev
-    - 'clean:tmp'
-    - 'clean:tempFolder'
-    - 'copy:customizerTemplates'
-    - 'replace:customizerHead'
-    - 'replace:customizerScript'
-    - 'replace:customizerBody'
-    - 'copy:customizerFiles'
-    - 'copy:customizerComponents'
-    - 'concurrent:customizer'
-    - 'jscs'
-    - 'jshint'
-
-localhost:
-    #Localhost
-    - 'connect:localhost'
-    - 'notify:server'
-
-pushCustomizerSite:
-    # Push to remote server with creating new branch
-    - 'buildcontrol:customizer'
-    - 'notify:site'
-
-# ==================================
-# ==================================
-

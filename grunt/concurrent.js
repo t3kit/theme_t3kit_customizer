@@ -4,24 +4,12 @@ module.exports = {
     },
     customizer: {
         tasks: [
-            'copy:fonts',
-            'copy:images',
-            'copy:flags',
-            'copy:toRoot',
+            'copy:felayoutSmall',
+            'copy:customizerFiles',
+            'copy:customizerBowComponents',
+            'copy:customizerToRoot',
             'assemble:customizer',
-            'less:components',
-            'less:local',
-            'import:header',
-            'import:headerMin',
-            'import:main',
-            'import:jquery',
-            'import:bootstrap',
-            'import:components',
-            'import:local',
-            'import:mainLess',
-            'import:bootstrapLess',
-            'import:headerLess',
-            'import:headerMinLess'
-        ],
+            'import:localJs'
+        ]
     }
 };
