@@ -129,10 +129,6 @@ jQuery(function($) {
         localStorage.setItem('lessObj', JSON.stringify(lessObj));
     });
 
-
-
-
-
     // Customizer Element Status
     $elementStatus.each(function() {
         elemvar = $(this).data('elclass');
@@ -144,8 +140,13 @@ jQuery(function($) {
                 $(elemvar).hide();
                 $(this).prop('checked', false);
             }
+        } else {
+            if ($(this).attr('checked') !== 'checked') {
+                $(elemvar).hide();
+            }
         }
     });
+
     $elementStatus.on('click', function() {
         elemvar = $(this).data('elclass');
         if (!$(this).prop('checked')) {
@@ -220,12 +221,30 @@ jQuery(function($) {
             '"': '',
             '-': '',
             ',': '\n',
-            '@': 'themes.configuration.var.'
+            '@': 'themes.configuration.less.var.'
         };
         lessObjStr = lessObjStr.replace(/({|}|-|:|"|,|@)/gi, function(matched) {
             return mapLessObj[matched];
         });
-        $customizerModalInput.val(lessObjStr);
+
+        var elemObjStr = JSON.stringify(elemObj);
+        elemObjStr = elemObjStr.replace(/(-|__|\ \.)\w{1}/g, function(v) { return v.toUpperCase(); });
+        var mapElemObj = {
+            ':': ' = ',
+            '{': '',
+            '}': '',
+            '"': '',
+            '-': '',
+            '__': '',
+            ',': '\n',
+            '\ \.': '',
+            '\.': 'themes.configuration.elem.status.'
+        };
+        elemObjStr = elemObjStr.replace(/({|}|-|__|:|"|,|\.|\ \.)/gi, function(matched) {
+            return mapElemObj[matched];
+        });
+        console.log(elemObjStr);
+        $customizerModalInput.val(lessObjStr + '\n' + elemObjStr);
     });
 
     $customizerModal.on('click', function() {
@@ -250,18 +269,9 @@ jQuery(function($) {
             if (!$(this).prop('checked')) {
                 $var.hide();
 // TODO ++++++++++++++++
-                // blockHeaders.each(function() {
-                //     if ($(this).next().is('div') && blockHeaders.next().is(':hidden')) {
-                //         $(this).hide();
-                //     }
-                // });
+
             } else {
                 $var.show();
-                // blockHeaders.each(function() {
-                //     if ($(this).next().is('div') && blockHeaders.next().is(':visible')) {
-                //         $(this).show();
-                //     }
-                // });
             }
 
         });
