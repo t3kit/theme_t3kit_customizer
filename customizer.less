@@ -1,21 +1,12 @@
 @import "main.less";
 
-
-// @customizer-position: fixed;
-// @customizer-bg: #fff;
-// @customizer-color: #000;
-// @customizer-width: 200px;
-// @customizer-header-height: 200px;
-// @customizer-body-height: 200px;
-// @customizer-g-height: 200px;
-
 .customizer{
     position: fixed;
-    top: 300px;
-    bottom: 40px;
+    top: 110px;
+    bottom: 200px;
     left: 0;
     z-index: 10000;
-    width: 240px;
+    width: 276px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: #fff;
     box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.1);
@@ -23,6 +14,122 @@
     transform: translate3d(0, 0, 0);
     color: #555;
 }
+
+// Customizer Header
+.customizer-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 49px;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.customizer-header__display {
+    display: inline-block;
+}
+.customizer-header__display-label {
+    font-size: 11px;
+    font-weight: 400;
+}
+.customizer-header__display-val {
+    margin-right: 8px!important;
+}
+
+
+// Customizer Body
+.customizer-body{
+    position: absolute;
+    top: 50px;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    padding: 5px 20px;
+    padding-right: 30px;
+    overflow-y: scroll;
+}
+
+// Customizer Body Block
+.customizer-block__header{
+    margin-bottom: 0px;
+    margin-top: 16px;
+}
+
+
+// Customizer Footer
+.customizer-footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    padding: 6px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.customizer-footer__btn{
+    width: 100%;
+    font-size: 11px;
+    color: #777;
+    display: block;
+    padding: 6px;
+    border: 1px solid #999;
+    text-align: center;
+    margin-bottom: 2px;
+
+}
+.customizer-footer__btn:hover{
+    color: #777;
+    background: #ddd;
+}
+.customizer-footer__btn:focus{
+    color: #777;
+}
+
+
+// Customizer Modals
+.customizer-modal-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s 0s,visibility 0s .3s;
+}
+.customizer-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 400px;
+    background: #ccc;
+    margin: 0 auto;
+    margin-top: -200px;
+    margin-left: -30%;
+    color: #000;
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s 0s,visibility 0s .3s;
+}
+._freeze-body .customizer-modal, ._freeze-body .customizer-modal-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+.customizer-modal__text {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    height: 300px;
+    display: block;
+    position: relative;
+    top: 30px;
+    color: #000;
+}
+
+
+// Hide Customizer
 .customizer__hide-btn {
     position: absolute;
     width: 30px;
@@ -69,62 +176,25 @@
     transform: translate3d(-100%, 0, 0);
 }
 
-.customizer__header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    padding: 16px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
 
-.customizer__body{
-    position: absolute;
-    top: 71px;
-    bottom: 76px;
-    left: 0;
-    right: 0;
-    padding: 20px 20px 0 20px;
-    overflow-y: scroll;
-}
 
-.customizer__footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 75px;
-    padding: 16px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-.customizer__footer-btn{
-    width: 100%;
-    font-size: 10px;
-    padding: 6px 0;
-    color: #000;
 
-}
+// ============================================================
+// Elements
+// ============================================================
 
-.color-picker {
+// Color Picker Less Var
+// ---------------------------------------------------------
+.customizer-color-picker {
     width: 100%;
     height: 26px;
     z-index: 11000;
     padding: 2px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
+    margin-bottom: 4px;
+    margin-top: 2px;
 }
-
-.customizer__body-item {
-    width: 100%;
-    height: 26px;
-    z-index: 11000;
-    padding: 0;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
-}
-
-.color-picker__title{
+.customizer-color-picker__title{
     width: 100%;
     height: 100%;
     position: relative;
@@ -132,15 +202,118 @@
     font-size: 11px;
     padding-left: 4px;
 }
-.color-picker__val{
+.customizer-color-picker__val{
+    cursor: pointer;
     display: block;
     position: absolute;
     height: 100%;
     width: 30px;
     right: 0;
     top: 0;
+    border: 1px solid #ddd;
 }
-.customizer__body-item-label{
+
+// Color Picker Tooltip
+.customizer-color-picker__tooltip{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s 0s,visibility 0s .2s;
+    // width: 140px;
+    background: #555;
+    color: #fff;
+    position: absolute;
+    // top: 0;
+    // left: -172px;
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 1;
+    height: 20px;
+    z-index: 1000;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+
+// Color Picker Return to default
+.customizer-color-picker__return-to-default{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -26px;
+    width: 26px;
+    line-height: 1;
+    height: 100%;
+    cursor: pointer;
+}
+
+.customizer-color-picker__return-to-default:before, .customizer-color-picker__return-to-default:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    height: 2px;
+    width: 14px;
+    top: 50%;
+    left: 50%;
+    margin-left: -7px;
+    background: #ccc;
+}
+.customizer-color-picker__return-to-default:before {
+    transform: rotate(135deg);
+}
+.customizer-color-picker__return-to-default:after {
+    transform: rotate(-135deg);
+}
+.customizer-color-picker__return-to-default:hover .customizer-color-picker__tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.customizer-color-picker__return-to-default .customizer-color-picker__tooltip {
+    top: 0;
+    left: -172px;
+    width: 140px;
+}
+
+// Color Picker Linked Variable
+.customizer-color-picker__linked-variable {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    height: 100%;
+    line-height: 1;
+    font-size: 16px;
+    color: #ccc;
+    display: inline-block;
+    padding: 4px 4px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.customizer-color-picker__linked-variable:hover .customizer-color-picker__tooltip{
+    opacity: 1;
+    visibility: visible;
+}
+
+.customizer-color-picker__linked-variable .customizer-color-picker__tooltip{
+    top: 0;
+    left: -110px;
+    width: 100px;
+}
+
+
+// Dimension Less Var
+// ---------------------------------------------------------
+.customizer-dimension-input {
+    width: 100%;
+    height: 26px;
+    z-index: 11000;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+.customizer-dimension-input__title{
     width: 100%;
     height: 100%;
     position: relative;
@@ -149,7 +322,7 @@
     padding-left: 4px;
     font-weight: 400;
 }
-.customizer__body-item-label-val{
+.customizer-dimension-input__val{
     display: block;
     position: absolute;
     height: 100%;
@@ -163,70 +336,176 @@
     border-left: 1px solid #EEE;
     padding-left: 3px;
 }
-.sp-container {
-    margin-top: 4px;
-}
 
 
-.customizer-modal-overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 10000;
+// dimension Less Var Tooltip
+.customizer-dimension-input__tooltip{
     opacity: 0;
     visibility: hidden;
-    transition: opacity .3s 0s,visibility 0s .3s;
+    transition: opacity .2s 0s,visibility 0s .2s;
+    // width: 140px;
+    background: #555;
+    color: #fff;
+    position: absolute;
+    // top: 0;
+    // left: -172px;
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 1;
+    height: 20px;
+    z-index: 1000;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    padding: 5px 0;
 }
 
-.customizer-modal {
-    position: fixed;
+
+// dimension Less Var Return to default
+.customizer-dimension-input__return-to-default{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -26px;
+    width: 26px;
+    line-height: 1;
+    height: 100%;
+    cursor: pointer;
+}
+
+.customizer-dimension-input__return-to-default:before, .customizer-dimension-input__return-to-default:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    height: 2px;
+    width: 14px;
     top: 50%;
     left: 50%;
-    width: 60%;
-    height: 400px;
+    margin-left: -7px;
     background: #ccc;
-    margin: 0 auto;
-    margin-top: -200px;
-    margin-left: -30%;
-    color: #000;
-    z-index: 10001;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .3s 0s,visibility 0s .3s;
 }
-
-._freeze-body .customizer-modal, ._freeze-body .customizer-modal-overlay {
+.customizer-dimension-input__return-to-default:before {
+    transform: rotate(135deg);
+}
+.customizer-dimension-input__return-to-default:after {
+    transform: rotate(-135deg);
+}
+.customizer-dimension-input__return-to-default:hover .customizer-dimension-input__tooltip {
     opacity: 1;
     visibility: visible;
 }
-
-.customizer-modal__text {
-    width: 70%;
-    margin: 0 auto;
-    display: block;
-    height: 300px;
-    display: block;
-    position: relative;
-    top: 30px;
-    color: #000;
+.customizer-dimension-input__return-to-default .customizer-dimension-input__tooltip {
+    top: 0;
+    left: -192px;
+    width: 140px;
 }
 
 
 
+// Element status Var
+// ---------------------------------------------------------
+.customizer-element-status {
+    width: 100%;
+    height: 26px;
+    z-index: 11000;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+.customizer-element-status__title{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    line-height: 24px;
+    font-size: 11px;
+    padding-left: 4px;
+    font-weight: 400;
+}
+.customizer-element-status__val {
+    display: none;
+}
+.customizer-element-status__checkbox{
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    right: 2px;
+    top: 2px;
+    cursor: pointer;
+    border: 1px solid #aaa;
+}
+.customizer-element-status__val + .customizer-element-status__checkbox:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    right: 2px;
+}
+.customizer-element-status__val:checked + .customizer-element-status__checkbox:before {
+    background: #288FB4;
+}
+
+// Element status Var Tooltip
+.customizer-element-status__tooltip{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s 0s,visibility 0s .2s;
+    // width: 140px;
+    background: #555;
+    color: #fff;
+    position: absolute;
+    // top: 0;
+    // left: -172px;
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 1;
+    height: 20px;
+    z-index: 1000;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+// Element status Var Return to default
+.customizer-element-status__return-to-default{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -26px;
+    width: 26px;
+    line-height: 1;
+    height: 100%;
+    cursor: pointer;
+}
+
+.customizer-element-status__return-to-default:before, .customizer-element-status__return-to-default:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    height: 2px;
+    width: 14px;
+    top: 50%;
+    left: 50%;
+    margin-left: -7px;
+    background: #ccc;
+}
+.customizer-element-status__return-to-default:before {
+    transform: rotate(135deg);
+}
+.customizer-element-status__return-to-default:after {
+    transform: rotate(-135deg);
+}
+.customizer-element-status__return-to-default:hover .customizer-element-status__tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+.customizer-element-status__return-to-default .customizer-element-status__tooltip {
+    top: 0;
+    left: -166px;
+    width: 140px;
+}
 
 
-// COLORS
-
-._customizer-main-color{background: @main-color;}
-._customizer-main-text-color{background: @main-text-color;}
-._customizer-main-body-bg{background: @main-body-bg;}
-._customizer-main-text-color{background: @main-text-color;}
-._customizer-header-border-color{background: @header-border-color;}
-._customizer-header-top-color{background: @header-top-color;}
-._customizer-nav-link-color{background: @nav-link-color;}
-._customizer-nav-link-hover-background{background: @nav-link-hover-background;}
-._customizer-footer-background{background: @footer-background;}
-._customizer-footer-color{background: @footer-color;}
-._customizer-footer-link-color{background: @footer-link-color;}
-._customizer-footer-link-hover-color{background: @footer-link-hover-color;}
+@import "color.less";

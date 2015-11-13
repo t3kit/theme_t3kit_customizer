@@ -11,37 +11,55 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#00aba9">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="t3kit">
+    <meta name="application-name" content="t3kit">
+    <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Page styles -->
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+
+    <!-- Customizer -->
     <link rel="stylesheet/less" type="text/css" href="bootstrap.less">
     <link rel="stylesheet" href="components.css">
-    <link rel="stylesheet/less" type="text/css" href="bootstrap.less">
     <link rel="stylesheet/less" type="text/css" href="header.less">
     <link rel="stylesheet/less" type="text/css" href="customizer.less">
-    <link rel="stylesheet" href="bower_components/spectrum/spectrum.css">
     <script>
       less = {
         env: "development"
       };
     </script>
-    <script src="bower_components/less/dist/less.min.js"></script>
+    <script src="less/dist/less.min.js"></script>
     <script>
       var lessObj = {};
+      var statusObj = {};
       if (localStorage.hasOwnProperty('lessObj')) {
         lessObj = JSON.parse(localStorage.getItem('lessObj'));
         less.modifyVars(lessObj);
       }
+      if (localStorage.hasOwnProperty('statusObj')) {
+        statusObj = JSON.parse(localStorage.getItem('statusObj'));
+      }
     </script>
-
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
 
     <!-- Scripts -->
     <script>
@@ -84,68 +102,718 @@
     <!--[if lte IE 9]>
       <p class="browsehappy">You are using an <strong>outdated</strong>  browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>  to improve your experience.</p>
             <![endif]-->
+
+    <!-- Header partials -->
     <div class="customizer js__customizer">
-      <div class="customizer__header">
-      </div>
-      <div class="customizer__body">
-        <h5 class="customizer__body-header">Main</h5>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Main-color</span> <span class="js__color-picker__val color-picker__val _customizer-main-color" data-lessvar="@main-color"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Main Body Bg</span> <span class="js__color-picker__val color-picker__val _customizer-main-body-bg" data-lessvar="@main-body-bg"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Main Text Color</span> <span class="js__color-picker__val color-picker__val _customizer-main-text-color" data-lessvar="@main-text-color"></span> </div>
-        </div>
-        <h5 class="customizer__body-header">Header</h5>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Header Top Color</span> <span class="js__color-picker__val color-picker__val _customizer-header-top-color" data-lessvar="@header-top-color"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Header Border Color</span> <span class="js__color-picker__val color-picker__val _customizer-header-border-color" data-lessvar="@header-border-color"></span> </div>
-        </div>
-        <div class="customizer__body-item">
-          <label class="customizer__body-item-label">Header Top Height
-            <input class="js__customizer__body-item-label-val customizer__body-item-label-val" type="text" placeholder="50px" data-lessvar="@header-top-height">
+
+      <!-- Customizer header [begin] -->
+      <div class="customizer-header">
+        <div class="customizer-header__display">
+          <label class="customizer-header__display-label">Basic
+            <input class="customizer-header__display-val js__display-basic" type="checkbox" checked>
           </label>
         </div>
-        <h5 class="customizer__body-header">Navigation</h5>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Nav Link Color</span> <span class="js__color-picker__val color-picker__val _customizer-nav-link-color" data-lessvar="@nav-link-color"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Nav Link Hover Bg</span> <span class="js__color-picker__val color-picker__val _customizer-nav-link-hover-background" data-lessvar="@nav-link-hover-background"></span> </div>
-        </div>
-        <div class="customizer__body-item">
-          <label class="customizer__body-item-label">Nav Height
-            <input class="js__customizer__body-item-label-val customizer__body-item-label-val" type="text" placeholder="64px" data-lessvar="@nav-height">
+        <div class="customizer-header__display">
+          <label class="customizer-header__display-label">Advanced
+            <input class="customizer-header__display-val js__display-advanced" type="checkbox">
           </label>
         </div>
-        <h5 class="customizer__body-header">Footer</h5>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Footer Background</span> <span class="js__color-picker__val color-picker__val _customizer-footer-background" data-lessvar="@footer-background"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Footer Color</span> <span class="js__color-picker__val color-picker__val _customizer-footer-color" data-lessvar="@footer-color"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Footer Link Color</span> <span class="js__color-picker__val color-picker__val _customizer-footer-link-color" data-lessvar="@footer-link-color"></span> </div>
-        </div>
-        <div class="color-picker">
-          <div class="color-picker__title"><span>Footer Link Hover Color</span> <span class="js__color-picker__val color-picker__val _customizer-footer-link-hover-color" data-lessvar="@footer-link-hover-color"></span> </div>
+        <div class="customizer-header__display">
+          <label class="customizer-header__display-label">Expert
+            <input class="customizer-header__display-val js__display-expert" type="checkbox">
+          </label>
         </div>
       </div>
-      <div class="customizer__footer">
-        <a href="" class="customizer__footer-btn btn btn-default js__customizer__footer-btn-clear-cache">Clear cache</a> 
-        <a href="" class="customizer__footer-btn btn btn-default js__customizer__footer-btn">Generate TYPO3 Theme config</a> 
+
+      <!-- Customizer header [end] -->
+
+      <!-- Customizer body [begin] -->
+      <div class="customizer-body">
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Type of header</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+
+        <!-- Customizer block body [end] -->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Main Color</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Main-color</span> 
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@main-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end] -->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Main Body</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Main Body Bg</span> 
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@main-body-bg">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Main Text Color</span> 
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@main-text-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Main Border Color</span> 
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@border-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Main Links</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Main Link Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@main-link-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Main Link Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@main-link-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Header Top</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-dimension-input" data-display="advanced">
+          <label class="customizer-dimension-input__title">Header Top Height
+            <input class="js__customizer-dimension-input__val customizer-dimension-input__val" type="text" placeholder="50px" data-lessvar="@header-top-height">
+            <div class="customizer-dimension-input__return-to-default js__customizer-dimension-input__return-to-default">
+              <span class="customizer-dimension-input__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Header Top Background Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@header-top-bg-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Header Top Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@header-top-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Top
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-top" data-status="Show Header Top" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Top Contacts
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-top__contact" data-status="Show Header Top Contacts" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Top LangMenu
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-top__language-menu" data-status="Show Header Top LangMenu" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Top Navigation
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-top .nav" data-status="Show Header Top Navigation" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Top Search
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".main-navigation__search-btn-wrp" data-status="Show Header Top Search">
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Header Middle</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-dimension-input" data-display="basic">
+          <label class="customizer-dimension-input__title">Logo Left
+            <input class="js__customizer-dimension-input__val customizer-dimension-input__val" type="text" placeholder="40px" data-lessvar="@logo-left">
+            <div class="customizer-dimension-input__return-to-default js__customizer-dimension-input__return-to-default">
+              <span class="customizer-dimension-input__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-dimension-input" data-display="basic">
+          <label class="customizer-dimension-input__title">Logo Top
+            <input class="js__customizer-dimension-input__val customizer-dimension-input__val" type="text" placeholder="24px" data-lessvar="@logo-top">
+            <div class="customizer-dimension-input__return-to-default js__customizer-dimension-input__return-to-default">
+              <span class="customizer-dimension-input__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-dimension-input" data-display="basic">
+          <label class="customizer-dimension-input__title">Logo Width
+            <input class="js__customizer-dimension-input__val customizer-dimension-input__val" type="text" placeholder="120px" data-lessvar="@logo-width">
+            <div class="customizer-dimension-input__return-to-default js__customizer-dimension-input__return-to-default">
+              <span class="customizer-dimension-input__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Header Middle Background Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@header-middle-bg-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Header Middle Border Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@header-border-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-dimension-input" data-display="advanced">
+          <label class="customizer-dimension-input__title">Header Middle Height
+            <input class="js__customizer-dimension-input__val customizer-dimension-input__val" type="text" placeholder="120px" data-lessvar="@header-middle-height">
+            <div class="customizer-dimension-input__return-to-default js__customizer-dimension-input__return-to-default">
+              <span class="customizer-dimension-input__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Social Icons Background Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@social-icons-bg-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Social Icons Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@social-icons-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Middle
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-middle-wrp" data-status="Show Header Middle" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Middle Logo
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-middle__logo" data-status="Show Header Middle Logo" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-element-status" data-display="basic">
+          <label class="customizer-element-status__title">Show Header Middle SocIcons
+            <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox" data-elclass=".header-middle__social-icons" data-status="Show Header Middle SocIcons" checked>
+            <span class="customizer-element-status__checkbox"></span> 
+            <div class="customizer-element-status__return-to-default js__customizer-element-status__return-to-default">
+              <span class="customizer-element-status__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Header Main Menu</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Background Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-background-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-dimension-input" data-display="advanced">
+          <label class="customizer-dimension-input__title">Navigation Height
+            <input class="js__customizer-dimension-input__val customizer-dimension-input__val" type="text" placeholder="64px" data-lessvar="@nav-height">
+            <div class="customizer-dimension-input__return-to-default js__customizer-dimension-input__return-to-default">
+              <span class="customizer-dimension-input__tooltip">Return to default value</span> 
+            </div>
+          </label>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Link Active Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-link-active-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Link Active Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-link-active-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Link Arrow Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-link-arrow-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Link Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-link-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Link Hover Background</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-link-hover-background">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Link Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-link-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Navigation Search Button Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@nav-search-btn-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Breadcrumbs</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Breadcrumbs Background</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@breadcrumbs-background">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Breadcrumbs Link Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@breadcrumbs-link-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Breadcrumbs Link Active Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@breadcrumbs-link-active-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Breadcrumbs Link Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@breadcrumbs-link-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Sub Navigation</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Background</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-background">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Border</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-border">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Active Border</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-active-border">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Link Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-link-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Link Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-link-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Link Hover Bg</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-link-hover-bg">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Link Active Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-link-active-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="advanced">
+          <div class="customizer-color-picker__title">
+            <span>Sub Navigation Link Active Bg</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@sub-navigation-link-active-bg">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end]-->
+
+        <!-- Customizer block header [begin]-->
+        <h5 class="customizer-block__header">Footer Colors</h5>
+
+        <!-- Customizer block header [end]-->
+
+        <!-- Customizer block body [begin] -->
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Footer Background</span> 
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@footer-background">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Footer Color</span> 
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@footer-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Footer Link Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@footer-link-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+        <div class="customizer-color-picker" data-display="basic">
+          <div class="customizer-color-picker__title">
+            <span>Footer Link Hover Color</span> 
+            <div class="customizer-color-picker__linked-variable">∞
+              <span class="customizer-color-picker__tooltip">Linked variable</span> 
+            </div>
+            <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="@footer-link-hover-color">
+            </a> 
+            <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">
+              <span class="customizer-color-picker__tooltip">Return to default value</span> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer block body [end]-->
       </div>
+
+      <!-- Customizer body [end] -->
+
+      <!-- Customizer footer [begin] -->
+      <div class="customizer-footer">
+        <a href="" class="customizer-footer__btn _clear-cache js__customizer-footer__btn-clear-cache">Clear cache</a> 
+        <a href="" class="customizer-footer__btn _typo-conf js__customizer-footer__btn-typo-conf">Generate TYPO3 Theme config</a> 
+      </div>
+
+      <!-- Customizer footer [end] -->
+
+      <!-- Customizer control buttons [begin] -->
       <div class="js__customizer__hide-btn customizer__hide-btn"></div>
+
+      <!-- Customizer control buttons [end] -->
     </div>
+
+    <!-- Customizer modal window [begin] -->
     <div class="js__customizer-modal-overlay customizer-modal-overlay"></div>
     <div class="customizer-modal">
       <textarea rows="20" class="customizer-modal__text js__customizer-modal__text"></textarea>
     </div>
+
+    <!-- Customizer modal window [end] -->
     <header class="header" role="banner">
       <div class="header-top-wrp">
         <div class="header-top">
@@ -170,11 +838,10 @@
             <a class="header-top__language-menu-btn js__header-top__language-menu-btn" href="/#"> <span class="main-flag-icon flag-icon flag-icon-gb"></span>  </a> 
             <div class="header-top__language-menu-box js__header-top__language-menu-box">
               <a href="" class="header-top__language-menu-box-item active"> <span class="flag-icon flag-icon-gb"></span>  English </a> 
-              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-se"></span>  Swedish </a> 
-              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-dk"></span>  Danish </a> 
-              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-fi"></span>  Finnish </a> 
-              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-de"></span>  German </a> 
-              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-no"></span>  Norwegian </a> 
+              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-de"></span>  Deutsch </a> 
+              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-ro"></span>  Română </a> 
+              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-se"></span>  Svenska </a> 
+              <a class="header-top__language-menu-box-item" href=""> <span class="flag-icon flag-icon-ua"></span>  Українська </a> 
               <a class="header-top__language-menu-box-close-btn js__header-top__language-menu-box-close-btn"></a> 
             </div>
           </div>
@@ -195,7 +862,7 @@
         <div class="header-middle">
           <div class="header-middle__logo">
             <a class="header-middle__logo-link" href="index.html">
-              <img class="header-middle__logo-img img-responsive" src="images/logo.png" alt="logo">
+              <img class="header-middle__logo-img img-responsive" src="images/t3kit.png" alt="logo">
             </a> 
           </div>
           <div class="header-middle__social-icons">
@@ -216,55 +883,54 @@
             <li class="main-navigation__item js__main-navigation__item ">
               <a class="main-navigation__item-link" href="index.html">Home</a> 
             </li>
-            <li class="main-navigation__item js__main-navigation__item ">
-              <a class="main-navigation__item-link" href="typicalPageContent.html">Typical page content</a> 
-            </li>
             <li class="main-navigation__item js__main-navigation__item _sub 
 _active
 ">
-              <a href="elements.html" class="main-navigation__item-link js__main-navigation__item-link">Content Elements</a> 
-              <a href="elements.html" class="main-navigation__open-sub-menu-link js__main-navigation__open-sub-menu-link">Open</a> 
+              <a href="content.html" class="main-navigation__item-link js__main-navigation__item-link">Content</a> 
+              <a href="content.html" class="main-navigation__open-sub-menu-link js__main-navigation__open-sub-menu-link">Open</a> 
               <ul class="main-navigation__sub-item-list">
                 <li class="main-navigation__sub-item 
 ">
-                  <a class="main-navigation__sub-item-link" href="slider.html">Image Slider</a> 
+                  <a class="main-navigation__sub-item-link" href="typicalPageContent.html">Typical Page Content</a> 
                 </li>
                 <li class="main-navigation__sub-item 
 ">
-                  <a class="main-navigation__sub-item-link" href="logoCarousel.html">Logo Carousel</a> 
+                  <a class="main-navigation__sub-item-link" href="specialElements.html">Special Elements</a> 
                 </li>
                 <li class="main-navigation__sub-item 
 ">
-                  <a class="main-navigation__sub-item-link" href="quote.html">Quote</a> 
+                  <a class="main-navigation__sub-item-link" href="formElements.html">Form Elements</a> 
                 </li>
                 <li class="main-navigation__sub-item 
 ">
-                  <a class="main-navigation__sub-item-link" href="bigIconTextButton.html">BigIconTextButton</a> 
-                </li>
-                <li class="main-navigation__sub-item _active
-">
-                  <a class="main-navigation__sub-item-link" href="iconTextButton.html">IconHeaderTextButton</a> 
+                  <a class="main-navigation__sub-item-link" href="plugins.html">Plugins</a> 
                 </li>
                 <li class="main-navigation__sub-item 
+_active
 ">
-                  <a class="main-navigation__sub-item-link" href="imageTextLink.html">ImageTextLink</a> 
+                  <a class="main-navigation__sub-item-link" href="contentElements.html">Content Elements</a> 
                 </li>
+              </ul>
+            </li>
+            <li class="main-navigation__item js__main-navigation__item _sub 
+">
+              <a href="" class="main-navigation__item-link js__main-navigation__item-link">Community</a> 
+              <a href="community.html" class="main-navigation__open-sub-menu-link js__main-navigation__open-sub-menu-link">Open</a> 
+              <ul class="main-navigation__sub-item-list">
                 <li class="main-navigation__sub-item 
 ">
-                  <a class="main-navigation__sub-item-link" href="accordion.html">Accordion</a> 
-                </li>
-                <li class="main-navigation__sub-item 
-">
-                  <a class="main-navigation__sub-item-link" href="tabs.html">Tabs</a> 
-                </li>
-                <li class="main-navigation__sub-item 
-">
-                  <a class="main-navigation__sub-item-link" href="navLevel2.html">Navigation Level 2</a> 
+                  <a class="main-navigation__sub-item-link" href="https://github.com/t3kit">t3kit on Github</a> 
                 </li>
               </ul>
             </li>
             <li class="main-navigation__item js__main-navigation__item ">
-              <a class="main-navigation__item-link" href="ext.html">Extensions</a> 
+              <a class="main-navigation__item-link" href="documentation.html">Documentation</a> 
+            </li>
+            <li class="main-navigation__item js__main-navigation__item ">
+              <a class="main-navigation__item-link" href="http://demo.t3kit.se">Demo</a> 
+            </li>
+            <li class="main-navigation__item js__main-navigation__item ">
+              <a class="main-navigation__item-link" href="http://t3kit.github.io/theme_t3kit_customizer">Customizer</a> 
             </li>
           </ul>
         </div>
@@ -281,7 +947,10 @@ _active
             <a class="breadcrumbs__list-link" href="index.html">Home</a> 
           </li>
           <li class="breadcrumbs__list-item">
-            <a class="breadcrumbs__list-link" href="elements.html">Content Elements</a> 
+            <a class="breadcrumbs__list-link" href="content.html">Content</a> 
+          </li>
+          <li class="breadcrumbs__list-item">
+            <a class="breadcrumbs__list-link" href="contentElements.html">Content Elements</a> 
           </li>
           <li class="breadcrumbs__list-item _active">IconHeaderTextButton</li>
         </ol>
@@ -292,24 +961,38 @@ _active
         <div class="col-md-3">
           <div class="sub-navigation">
             <div class="sub-navigation__wrp">
-              <a href="slider.html" class="sub-navigation__link
-">Image Slider</a> 
-              <a href="logoCarousel.html" class="sub-navigation__link
-">Logo Carousel</a> 
-              <a href="quote.html" class="sub-navigation__link
-">Quote</a> 
-              <a href="bigIconTextButton.html" class="sub-navigation__link
-">BigIconTextButton</a> 
-              <a href="iconTextButton.html" class="sub-navigation__link _active _curent
-">IconHeaderTextButton</a> 
-              <a href="imageTextLink.html" class="sub-navigation__link
-">ImageTextLink</a> 
-              <a href="accordion.html" class="sub-navigation__link
-">Accordion</a> 
-              <a href="tabs.html" class="sub-navigation__link
-">Tabs</a> 
-              <a href="navLevel2.html" class="sub-navigation__link
-">Navigation Level 2</a> 
+              <a href="typicalPageContent.html" class="sub-navigation__link
+">Typical Page Content</a> 
+              <a href="specialElements.html" class="sub-navigation__link
+">Special Elements</a> 
+              <a href="formElements.html" class="sub-navigation__link
+">Form Elements</a> 
+              <a href="plugins.html" class="sub-navigation__link
+">Plugins</a> 
+              <a href="contentElements.html" class="sub-navigation__link
+ _active
+">Content Elements</a> 
+              <a href="bigIconTextButton.html" class="sub-navigation__link _level-2
+">BigIconTextButton </a> 
+              <a href="iconTextButton.html" class="sub-navigation__link _level-2 _active _curent
+">IconHeaderTextButton </a> 
+              <a href="imageTextLink.html" class="sub-navigation__link _level-2
+">ImageTextLink </a> 
+              <a href="logoCarousel.html" class="sub-navigation__link _level-2
+">Logo Carousel </a> 
+              <a href="slider.html" class="sub-navigation__link _level-2
+">Image Slider </a> 
+              <a href="quote.html" class="sub-navigation__link _level-2
+">Quote </a> 
+              <a href="accordion.html" class="sub-navigation__link _level-2
+">Accordion </a> 
+              <a href="tabs.html" class="sub-navigation__link _level-2
+">Tabs </a> 
+              <a href="navLevel3.html" class="sub-navigation__link _level-2
+">Navigation Level 3 </a> 
+              <a href="navLevel4.html" class="sub-navigation__link _level-3
+">Navigation Level 4 </a> 
+              <a class="sub-navigation__link _level-4" href="navLevel5.html">Navigation Level 5 </a> 
             </div>
           </div>
         </div>
@@ -355,7 +1038,7 @@ _active
       <div class="footer__container container">
         <div class="row">
           <div class="col-md-6 footer__about">
-            <h4>About Pixelant AB</h4>
+            <h4>About t3kit</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiumdod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis no strud exercitation ullamco laboris nisi ut.</p>
             <a href="">Read more about us</a> 
           </div>
@@ -363,7 +1046,7 @@ _active
             <h4>Contact us</h4>
             <div class="row">
               <div class=" col-xs-4 col-md-4 ">
-                <p>Pixelant AB
+                <p>t3kit
                   <br>Regementsgatan 8
                   <br>211 42 Malmö,
                   <br>Sweden</p>
@@ -386,17 +1069,6 @@ _active
                     </p>
                   </li>
                 </ul>
-                <div class="social">
-                  <ul class="nav nav-pills">
-                    <li> <a href="#"> <span class="icons icon-t3-facebook"></span>  </a>  </li>
-                    <li> <a href="#"> <span class="icons icon-t3-twitter"></span>  </a>  </li>
-                    <li> <a href="#"> <span class="icons icon-t3-linkedin"></span>  </a>  </li>
-                    <li> <a href="#"> <span class="icons icon-t3-vimeo"></span>  </a>  </li>
-                    <li> <a href="#"> <span class="icons icon-t3-googleplus"></span>  </a>  </li>
-                    <li> <a href="#"> <span class="icons icon-t3-pinterest"></span>  </a>  </li>
-                    <li> <a href="#"> <span class="icons icon-t3-instagram"></span>  </a>  </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -408,26 +1080,54 @@ _active
             <h4>Quick links</h4>
             <div class="row">
               <div class="col-md-6">
-                <ul class="nav">
-                  <li> <a href="contact.html">Contact</a>  </li>
-                  <li> <a href="news.html">News</a>  </li>
-                  <li> <a href="about.html">About</a>  </li>
-                  <li> <a href="siteMap.html">Site Map</a>  </li>
+                <ul class="ce-menu ce-menu-1">
+                  <li> <a href="">Typical page content</a>  </li>
+                  <li> <a href="">Special Elements</a>  </li>
+                  <li> <a href="">Form Elements</a>  </li>
+                  <li> <a href="">Plugins</a>  </li>
+                  <li> <a href="">Content Elements</a>  </li>
                 </ul>
               </div>
               <div class="col-md-6">
-                <ul class="nav">
-                  <li> <a href="isotope.html">Isotope</a>  </li>
-                  <li> <a href="login.html">Login</a>  </li>
-                  <li> <a href="tabs.html">Tabs</a>  </li>
-                  <li> <a href="forms.html">Forms</a>  </li>
+                <ul class="ce-menu ce-menu-1">
+                  <li> <a href="">Typical page content</a>  </li>
+                  <li> <a href="">Special Elements</a>  </li>
+                  <li> <a href="">Form Elements</a>  </li>
+                  <li> <a href="">Plugins</a>  </li>
+                  <li> <a href="">Content Elements</a>  </li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-6 footer__subscribe">
-            <h4>Subscribe to newsletter </h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiumdod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div id="c87">
+              <div id="c88">
+                <h4>Subscribe to newsletter</h4>
+                <div class="ce-textpic ce-right ce-intext">
+                  <div class="ce-bodytext">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiumdod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__social">
+        <div class="container">
+          <div class="row ">
+            <div class="col-md-12">
+              <div class="footer__social-icons">
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-facebook"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-twitter"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-linkedin"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-vimeo"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-googleplus"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-pinterest"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-instagram"></span>  </a> 
+                <a class="footer__social-icon" href="#"> <span class="icons icon-t3-youtube"></span>  </a> 
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -435,13 +1135,13 @@ _active
         <div class="container">
           <div class="row">
             <div class="col-md-7 footer__bottom-copyright">
-              <p>All rights reserved PIXELANT AB © 2014</p>
+              <p>All rights reserved © 2015</p>
             </div>
             <div class="col-md-5 footer__bottom-nav">
-              <ul class=" nav">
-                <li> <a href="legalRights.html">Legal Rights</a>  </li>
-                <li> <a href="termsOfUse.html">Terms of Use</a>  </li>
-                <li> <a href="cookies.html">Cookies</a>  </li>
+              <ul class="ce-menu ce-menu-1">
+                <li> <a href="">Legal Rights</a>  </li>
+                <li> <a href="">Terms of Use</a>  </li>
+                <li> <a href="">Cookies</a>  </li>
               </ul>
             </div>
           </div>
@@ -456,7 +1156,10 @@ _active
     <script src="header.js"></script>
     <script src="main.js"></script>
     <script src="local.js"></script>
-    <script src="bower_components/spectrum/spectrum.js"></script>
+
+    <!-- ====
+    === -->
+    <script src="colorPicker/jqColorPicker.min.js"></script>
     <script src="customizer.js"></script>
   </body>
 </html>
