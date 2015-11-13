@@ -1,11 +1,11 @@
 /* global less */
 /* global lessObj */
 /* global lessObj:true */
-/* global elemObj */
-/* global elemObj:true */
+/* global statusObj */
+/* global statusObj:true */
 
 var lessvar;
-var elemvar;
+var statusKey;
 jQuery(function($) {
 
     // Save variables
@@ -131,42 +131,49 @@ jQuery(function($) {
 
     // Customizer Element Status
     $elementStatus.each(function() {
-        elemvar = $(this).data('elclass');
-        if (elemObj[elemvar] !== undefined) {
-            if (elemObj[elemvar]) {
-                $(elemvar).show();
+        var elem = $(this).data('elclass');
+        statusKey = $(this).data('status');
+        statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+        if (statusObj[statusKey] !== undefined) {
+            if (statusObj[statusKey]) {
+                $(elem).show();
                 $(this).prop('checked', true);
             } else {
-                $(elemvar).hide();
+                $(elem).hide();
                 $(this).prop('checked', false);
             }
         } else {
             if ($(this).attr('checked') !== 'checked') {
-                $(elemvar).hide();
+                $(elem).hide();
             }
         }
     });
 
     $elementStatus.on('click', function() {
-        elemvar = $(this).data('elclass');
+        var elem = $(this).data('elclass');
+        statusKey = $(this).data('status');
+        statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (!$(this).prop('checked')) {
-            elemObj[elemvar] = 0;
-            $(elemvar).hide();
+            statusObj[statusKey] = 0;
+            $(elem).hide();
         } else {
-            elemObj[elemvar] = 1;
-            $(elemvar).show();
+            statusObj[statusKey] = 1;
+            $(elem).show();
         }
-        localStorage.setItem('elemObj', JSON.stringify(elemObj));
+        localStorage.setItem('statusObj', JSON.stringify(statusObj));
     });
     var defaultElemStatus = function() {
         $elementStatus.each(function() {
-            elemvar = $(this).data('elclass');
-            if (elemObj[elemvar] !== undefined) {
+            var elem = $(this).data('elclass');
+            statusKey = $(this).data('status');
+            statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+
+            if (statusObj[statusKey] !== undefined) {
                 if ($(this).attr('checked') === 'checked') {
-                    $(elemvar).show();
+                    $(elem).show();
                     $(this).prop('checked', true);
                 } else {
-                    $(elemvar).hide();
+                    $(elem).hide();
                     $(this).prop('checked', false);
                 }
             }
@@ -176,16 +183,18 @@ jQuery(function($) {
     // Customizer Element Status Return to default
     $elementStatusReturnToDefault.on('click', function(e) {
         e.preventDefault();
-        elemvar = $(this).prevAll('.js__customizer-element-status__val');
-        if (elemvar.attr('checked') === 'checked') {
-            $(elemvar.data('elclass')).show();
-            elemvar.prop('checked', true);
+        var prevElem = $(this).prevAll('.js__customizer-element-status__val');
+        statusKey = prevElem.data('status');
+        statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+        if (prevElem.attr('checked') === 'checked') {
+            $(prevElem.data('elclass')).show();
+            prevElem.prop('checked', true);
         } else {
-            $(elemvar.data('elclass')).hide();
-            elemvar.prop('checked', false);
+            $(prevElem.data('elclass')).hide();
+            prevElem.prop('checked', false);
         }
-        delete elemObj[elemvar.data('elclass')];
-        localStorage.setItem('elemObj', JSON.stringify(elemObj));
+        delete statusObj[statusKey];
+        localStorage.setItem('statusObj', JSON.stringify(statusObj));
     });
 
     // Customizer Hide function
@@ -204,8 +213,8 @@ jQuery(function($) {
 
         // elements stetus
         defaultElemStatus();
-        localStorage.removeItem('elemObj');
-        elemObj = {};
+        localStorage.removeItem('stausObj');
+        statusObj = {};
     });
 
     // Customizer Generate TYPO3 Theme config
@@ -227,8 +236,17 @@ jQuery(function($) {
             return mapLessObj[matched];
         });
 
-        var elemObjStr = JSON.stringify(elemObj);
-        elemObjStr = elemObjStr.replace(/(-|__|\ \.)\w{1}/g, function(v) { return v.toUpperCase(); });
+        // var statusObjTmp = {};
+        var statusObjTmp = $.extend({},statusObj);
+        console.log(statusObjTmp);
+        console.log(statusObj);
+        $.each(statusObjTmp, function(key) {
+            var newKey = 'themes.configuration.elem.status.' + key;
+            statusObjTmp[newKey] = statusObjTmp[key];
+            delete statusObjTmp[key];
+        });
+        var statusObjStr = JSON.stringify(statusObjTmp);
+        // elemObjStr = elemObjStr.replace(/(-|__|\ \.)\w{1}/g, function(v) { return v.toUpperCase(); });
         var mapElemObj = {
             ':': ' = ',
             '{': '',
@@ -236,15 +254,14 @@ jQuery(function($) {
             '"': '',
             '-': '',
             '__': '',
-            ',': '\n',
-            '\ \.': '',
-            '\.': 'themes.configuration.elem.status.'
+            ',': '\n'
+            // '\ \.': '',
+            // '\.': 'themes.configuration.elem.status.'
         };
-        elemObjStr = elemObjStr.replace(/({|}|-|__|:|"|,|\.|\ \.)/gi, function(matched) {
+        statusObjStr = statusObjStr.replace(/({|}|-|__|:|"|,)/gi, function(matched) {
             return mapElemObj[matched];
         });
-        console.log(elemObjStr);
-        $customizerModalInput.val(lessObjStr + '\n' + elemObjStr);
+        $customizerModalInput.val(lessObjStr + '\n' + statusObjStr);
     });
 
     $customizerModal.on('click', function() {
