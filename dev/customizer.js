@@ -130,10 +130,15 @@ jQuery(function($) {
     });
 
     // Customizer Element Status
+
+    var statusRegEx = function(key) {
+        statusKey = key.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+    };
     $elementStatus.each(function() {
         var elem = $(this).data('elclass');
         statusKey = $(this).data('status');
-        statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+        statusRegEx(statusKey);
+        // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (statusObj[statusKey] !== undefined) {
             if (statusObj[statusKey]) {
                 $(elem).show();
@@ -152,7 +157,8 @@ jQuery(function($) {
     $elementStatus.on('click', function() {
         var elem = $(this).data('elclass');
         statusKey = $(this).data('status');
-        statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+        statusRegEx(statusKey);
+        // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (!$(this).prop('checked')) {
             statusObj[statusKey] = 0;
             $(elem).hide();
@@ -166,7 +172,8 @@ jQuery(function($) {
         $elementStatus.each(function() {
             var elem = $(this).data('elclass');
             statusKey = $(this).data('status');
-            statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+            statusRegEx(statusKey);
+            // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
 
             if (statusObj[statusKey] !== undefined) {
                 if ($(this).attr('checked') === 'checked') {
@@ -185,7 +192,8 @@ jQuery(function($) {
         e.preventDefault();
         var prevElem = $(this).prevAll('.js__customizer-element-status__val');
         statusKey = prevElem.data('status');
-        statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
+        statusRegEx(statusKey);
+        // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (prevElem.attr('checked') === 'checked') {
             $(prevElem.data('elclass')).show();
             prevElem.prop('checked', true);
@@ -211,7 +219,7 @@ jQuery(function($) {
         lessObj = {};
         less.modifyVars(lessObj);
 
-        // elements stetus
+        // elements status
         defaultElemStatus();
         localStorage.removeItem('stausObj');
         statusObj = {};
@@ -236,7 +244,6 @@ jQuery(function($) {
             return mapLessObj[matched];
         });
 
-        // var statusObjTmp = {};
         var statusObjTmp = $.extend({},statusObj);
         console.log(statusObjTmp);
         console.log(statusObj);
@@ -246,7 +253,6 @@ jQuery(function($) {
             delete statusObjTmp[key];
         });
         var statusObjStr = JSON.stringify(statusObjTmp);
-        // elemObjStr = elemObjStr.replace(/(-|__|\ \.)\w{1}/g, function(v) { return v.toUpperCase(); });
         var mapElemObj = {
             ':': ' = ',
             '{': '',
@@ -255,8 +261,6 @@ jQuery(function($) {
             '-': '',
             '__': '',
             ',': '\n'
-            // '\ \.': '',
-            // '\.': 'themes.configuration.elem.status.'
         };
         statusObjStr = statusObjStr.replace(/({|}|-|__|:|"|,)/gi, function(matched) {
             return mapElemObj[matched];
