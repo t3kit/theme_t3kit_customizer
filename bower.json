@@ -2,6 +2,6 @@
   "name": "theme_t3kit_customizer",
   "devDependencies": {
     "less": "2.5.3",
-    "colorPicker": "https://github.com/PitPik/tinyColorPicker.git#6ee05825b41e6"
+    "colorPicker": "https://github.com/PitPik/tinyColorPicker.git#6843c235907e83a"
   }
 }
