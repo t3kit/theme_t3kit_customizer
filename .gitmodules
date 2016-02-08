@@ -1,3 +1,7 @@
 [submodule "felayout_t3kit"]
 	path = felayout_t3kit
 	url = git@github.com:t3kit/felayout_t3kit.git
+[submodule "felayout_t3kit_small_branch"]
+	path = felayout_t3kit_small_branch
+	url = git@github.com:t3kit/felayout_t3kit.git
+	branch = small
