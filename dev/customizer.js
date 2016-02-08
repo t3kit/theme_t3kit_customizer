@@ -289,7 +289,7 @@ jQuery(function($) {
         $checkbox.on('click', function() {
             if (!$(this).prop('checked')) {
                 $var.hide();
-// TODO ++++++++++++++++
+// TODO header show - hide if empty
 
             } else {
                 $var.show();
@@ -302,4 +302,3 @@ jQuery(function($) {
     customizerDisplay($displayExpert, $expert);
 
 });
-
