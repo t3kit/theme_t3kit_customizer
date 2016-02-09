@@ -1,5 +1,5 @@
 module.exports = {
-    customizer: {
+    customizerTemplates: {
         files: ['<%= dev %>/**/*.hbs'],
         tasks: ['assemble:customizer']
     },

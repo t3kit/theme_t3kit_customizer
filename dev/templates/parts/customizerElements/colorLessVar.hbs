@@ -1,19 +1,19 @@
-{{#is this.displayCategory "basic"}}
+{{~#is this.displayCategory "basic"~}}
 <div class="customizer-color-picker" data-display="basic">
-{{/is}}
-{{#is this.displayCategory "advanced"}}
+{{~/is~}}
+{{~#is this.displayCategory "advanced"~}}
 <div class="customizer-color-picker" data-display="advanced">
-{{/is}}
-{{#is this.displayCategory "expert"}}
+{{~/is~}}
+{{~#is this.displayCategory "expert"~}}
 <div class="customizer-color-picker" data-display="expert">
-{{/is}}
+{{~/is~}}
     <div class="customizer-color-picker__title">
         <span>{{title}}</span>
-        {{#is this.linkedVar true}}
+        {{~#is this.linkedVar true~}}
         <div class="customizer-color-picker__linked-variable">∞
             <span class="customizer-color-picker__tooltip">Linked variable</span>
         </div>
-        {{/is}}
+        {{~/is~}}
         <a class="js__customizer-color-picker__val customizer-color-picker__val" data-lessvar="{{colorVar}}">
         </a>
         <div class="customizer-color-picker__return-to-default js__customizer-color-picker__return-to-default">

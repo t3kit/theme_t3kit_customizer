@@ -7,13 +7,5 @@ module.exports = {
                 '!<%= temp %>/.git*'
             ]
         }]
-    },
-    copyToRootFolder: {
-        files: [{
-            dot: true,
-            src: [
-                '<%= temp %>/copyToRoot',
-            ]
-        }]
     }
 };

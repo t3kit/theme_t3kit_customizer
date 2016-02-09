@@ -3,13 +3,10 @@
 # Customizer
 # ==================================
 default:
-    #dev
-    - 'clean:tempFolder'
-    - 'concurrent:customizer'
-    - 'clean:copyToRootFolder'
+    #Dev
+    - 'dev' #task helper
     #Localhost
-    - 'connect:localhost'
-    - 'notify:server'
+    - 'localhost' #task helper
     #Watch
     - 'watch'
 
@@ -23,19 +20,18 @@ customizer:
 # ==================================
 # Publish Customizer Site
 # ==================================
-customizerSite:
-    #Big
-    - 'concurrent:customizer'
-    #Big
+pushCustomizer:
+    #Dev
+    - 'dev' #task helper
+    # Push to remote server with creating new branch
     - 'buildcontrol:customizer'
     - 'notify:site'
 
 # ==================================
-# Alias for publishCustomizerSite task
+# Alias for pushCustomizer task
 # ==================================
-cs:
-    #Publish Customizer Site
-    - 'customizerSite'
+pc:
+    - 'pushCustomizer'
 
 
 # ==================================
@@ -46,3 +42,19 @@ check:
     - 'jscs'
     #jshint
     - 'jshint'
+
+
+# ==================================
+# Task helpers  ====================
+# ==================================
+dev:
+    #Dev
+    - 'clean:tempFolder'
+    - 'concurrent:customizer'
+
+localhost:
+    #Localhost
+    - 'connect:localhost'
+    - 'notify:server'
+# ==================================
+# ==================================

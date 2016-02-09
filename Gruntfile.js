@@ -1,12 +1,16 @@
 // Variables. Need to change according new felayout_...
 var felayout = 'felayout_t3kit';
-var felayoutPartials = felayout + '/dev/templates/parts';
-var felayoutPages = felayout + '/dev/templates/pages';
-var felayoutTmplHelpers = felayout + '/grunt/helpers/helper-*.js';
+var felayoutSmallBranch = 'felayout_t3kit_small_branch';
+var felayoutHbsPartials = felayout + '/dev/templates/parts';
+var felayoutHbsPages = felayout + '/dev/templates/pages';
+var felayoutHbsHelpers = felayout + '/grunt/helpers/helper-*.js';
 
+// Customizer templates
 // Customizer layout should be almost the same as felayout layout. Only with less instead of css.
-var customizerLayouts = 'dev/templates/layouts';
-var customizerPartials = 'dev/templates/parts';
+var customizerHbsLayout = 'dev/templates/layout';
+var customizerHbsPartials = 'dev/templates/parts';
+
+// remote repo configs
 var remoteBranch = 'gh-pages';
 var remoteRepo = 'git@github.com:t3kit/theme_t3kit_customizer.git';
 
@@ -15,23 +19,24 @@ module.exports = function(grunt) {
     require('load-grunt-config')(grunt, {
         data: {
             felayout: felayout,
-            felayoutPartials: felayoutPartials,
-            felayoutPages: felayoutPages,
-            felayoutTmplHelpers: felayoutTmplHelpers,
-            customizerLayouts: customizerLayouts,
-            customizerPartials: customizerPartials,
+            felayoutSmallBranch: felayoutSmallBranch,
+            felayoutHbsPartials: felayoutHbsPartials,
+            felayoutHbsPages: felayoutHbsPages,
+            felayoutHbsHelpers: felayoutHbsHelpers,
+            // Customizer templates
+            customizerHbsLayout: customizerHbsLayout,
+            customizerHbsPartials: customizerHbsPartials,
             dev: 'dev',
             temp: 'temp',
+            // remote repo configs
             remoteRepo: remoteRepo,
             remoteBranch: remoteBranch
         },
         jitGrunt: {
             staticMappings: {
-                replace: 'grunt-text-replace',
                 buildcontrol: 'grunt-build-control'
             }
         }
     });
-    grunt.loadNpmTasks('assemble');
     grunt.loadNpmTasks('grunt-notify');
 };

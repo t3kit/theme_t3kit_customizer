@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    {{>customizerHead}}
+<body>
+    <!--[if lte IE 9]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {{>customizerLayout}}
+
+    <!-- Header -->
+    {{ renderContent 'header'
+        showHeaderTop="true"
+        showHeaderTopContacts="true"
+        showHeaderTopLangMenu="true"
+        showTopHeaderSearch="true"
+        showHeaderTopNav="true"
+
+        showHeaderMiddle="true"
+        showHeaderMiddleLogo="true"
+        showHeaderMiddleSocIcons="true"
+
+        showMainNavSearch="true"
+        navDropdown="true"
+    }}
+
+    <!-- pages -->
+    {{>body}}
+
+    <!-- Footer partials -->
+    {{>footer}}
+    {{>scripts}}
+    {{>customizerScripts}}
+</body>
+</html>

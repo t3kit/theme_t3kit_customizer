@@ -3,19 +3,12 @@ module.exports = {
     felayoutSmall: {
         expand: true,
         dot: true,
-        cwd: '<%= felayout %>/small',
-        dest: 'temp',
-        src: [
-            '**'
-        ]
-    },
-    customizerToRoot: {
-        expand: true,
-        dot: true,
-        cwd: '<%= temp %>/copyToRoot',
+        cwd: '<%= felayoutSmallBranch %>',
         dest: '<%= temp %>',
         src: [
-            '*'
+            '**',
+            '!.git',
+            '!.gitignore'
         ]
     },
     customizerFiles: {
@@ -29,7 +22,7 @@ module.exports = {
             '!bower_components/**'
         ]
     },
-    customizerBowComponents: {
+    bowerComponents: {
         expand: true,
         dot: true,
         cwd: '<%= dev %>/bower_components',

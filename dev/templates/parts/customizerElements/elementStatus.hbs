@@ -1,12 +1,12 @@
-{{#is this.displayCategory "basic"}}
+{{~#is this.displayCategory "basic"~}}
 <div class="customizer-element-status" data-display="basic">
 {{/is}}
-{{#is this.displayCategory "advanced"}}
+{{~#is this.displayCategory "advanced"~}}
 <div class="customizer-element-status" data-display="advanced">
-{{/is}}
-{{#is this.displayCategory "expert"}}
+{{~/is~}}
+{{~#is this.displayCategory "expert"~}}
 <div class="customizer-element-status" data-display="expert">
-{{/is}}
+{{~/is~}}
     <label class="customizer-element-status__title">{{title}}
         <input class="js__customizer-element-status__val customizer-element-status__val" type="checkbox"data-elclass="{{elclass}}" data-status="{{title}}" {{#is this.visibleByDefault true}}checked{{/is}}>
         <span class="customizer-element-status__checkbox"></span>

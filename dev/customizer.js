@@ -221,7 +221,7 @@ jQuery(function($) {
 
         // elements status
         defaultElemStatus();
-        localStorage.removeItem('stausObj');
+        localStorage.removeItem('statusObj');
         statusObj = {};
     });
 

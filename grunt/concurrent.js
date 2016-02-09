@@ -6,8 +6,7 @@ module.exports = {
         tasks: [
             'copy:felayoutSmall',
             'copy:customizerFiles',
-            'copy:customizerBowComponents',
-            'copy:customizerToRoot',
+            'copy:bowerComponents',
             'assemble:customizer',
             'import:localJs'
         ]

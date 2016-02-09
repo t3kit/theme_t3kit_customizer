@@ -6,7 +6,7 @@ module.exports = {
     },
     site: {
         options: {
-            message: 'Static site successfully updated'
+            message: 'Customizer site successfully updated'
         }
     },
 };

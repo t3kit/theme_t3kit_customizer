@@ -1,17 +1,14 @@
 module.exports = {
     options: {
-        postprocess: require('pretty'),
         flatten: true,
         layout: 'default.hbs',
-        helpers: '<%= felayoutTmplHelpers %>',
+        layoutdir: '<%= customizerHbsLayout %>',
+        helpers: '<%= felayoutHbsHelpers %>',
+        partials: ['<%= felayoutHbsPartials %>/**/*.hbs', '<%= customizerHbsPartials %>/**/*.hbs']
     },
     customizer: {
-        options: {
-            layoutdir: '<%= customizerLayouts %>',
-            partials: ['<%= felayoutPartials %>/**/*.hbs', '<%= customizerPartials %>/**/*.hbs']
-        },
         files: {
-            '<%= temp %>': ['<%= felayoutPages %>/**/*.hbs']
+            '<%= temp %>': ['<%= felayoutHbsPages %>/**/*.hbs']
         },
     }
 };
