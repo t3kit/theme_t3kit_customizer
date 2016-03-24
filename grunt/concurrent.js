@@ -8,7 +8,6 @@ module.exports = {
             'copy:customizerFiles',
             'copy:bowerComponents',
             'assemble:customizer',
-            'import:localJs'
         ]
     }
 };

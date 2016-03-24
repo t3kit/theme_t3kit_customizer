@@ -1,6 +1,6 @@
 // Variables. Need to change according new felayout_...
 var felayout = 'felayout_t3kit';
-var felayoutSmallBranch = 'felayout_t3kit_small_branch';
+var felayoutSmallBranch = 'felayout_t3kit_less';
 var felayoutHbsPartials = felayout + '/dev/templates/parts';
 var felayoutHbsPages = felayout + '/dev/templates/pages';
 var felayoutHbsHelpers = felayout + '/grunt/helpers/helper-*.js';
