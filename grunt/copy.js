@@ -29,6 +29,7 @@ module.exports = {
         dest: '<%= temp %>',
         src: [
             'colorPicker/jqColorPicker.min.js',
+            'clipboard/dist/clipboard.min.js',
             'less/dist/less.min.js'
         ]
     }
