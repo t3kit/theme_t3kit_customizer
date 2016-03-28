@@ -1,4 +1,4 @@
-<div class="customizer js__customizer">
+<div class="customizer js__customizer _hide-customizer">
 
     <!-- Customizer header [begin] -->
     <div class="customizer-header">
@@ -9,12 +9,12 @@
         </div>
         <div class="customizer-header__display">
             <label class="customizer-header__display-label">Advanced
-                <input class="customizer-header__display-val js__display-advanced" type="checkbox" >
+                <input class="customizer-header__display-val js__display-advanced" type="checkbox" checked>
             </label>
         </div>
         <div class="customizer-header__display">
-            <label class="customizer-header__display-label">Expert
-                <input class="customizer-header__display-val js__display-expert" type="checkbox" >
+            <label class="customizer-header__display-label">Color Livereload
+                <input class="customizer-header__display-val js__color-livereload" type="checkbox">
             </label>
         </div>
     </div>
@@ -44,6 +44,9 @@
 <!-- Customizer modal window [begin] -->
 <div class="js__customizer-modal-overlay customizer-modal-overlay"></div>
 <div class="customizer-modal">
-    <textarea rows="20" class="customizer-modal__text js__customizer-modal__text" ></textarea>
+    <div class="customizer-modal__close-btn js__customizer-modal__close-btn"></div>
+    <h4 class="customizer-modal__header">Add these constants to template record on your t3kit installation</h3>
+    <textarea id="customizer-modal__constants" rows="20" class="customizer-modal__text js__customizer-modal__text" ></textarea>
+    <button class="customizer-modal__clipboard-btn" data-clipboard-target="#customizer-modal__constants">Copy to clipboard</button>
 </div>
 <!-- Customizer modal window [end] -->

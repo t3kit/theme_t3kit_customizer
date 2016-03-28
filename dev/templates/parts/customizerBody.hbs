@@ -1,13 +1,5 @@
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Type of header</h5>
-<!-- Customizer block header [end]-->
-
-<!-- Customizer block body [begin] -->
-<!-- Customizer block body [end] -->
-
-
-<!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Main Color</h5>
+<h5 class="customizer-block__header" data-display="basic">Main Color</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -20,8 +12,9 @@
 <!-- Customizer block body [end] -->
 
 
+
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Main Body</h5>
+<h5 class="customizer-block__header" data-display="basic">Main Body Colors</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -32,22 +25,23 @@
     linkedVar=false
 }}
 {{ renderContent 'colorLessVar'
+displayCategory= "basic"
+title="Main Border Color"
+colorVar="@border-color"
+linkedVar=false
+}}
+{{ renderContent 'colorLessVar'
     displayCategory= "basic"
     title="Main Text Color"
     colorVar="@main-text-color"
     linkedVar=false
 }}
-{{ renderContent 'colorLessVar'
-    displayCategory= "basic"
-    title="Main Border Color"
-    colorVar="@border-color"
-    linkedVar=false
-}}
 <!-- Customizer block body [end]-->
 
 
+
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Main Links</h5>
+<h5 class="customizer-block__header" data-display="basic">Main Links Colors</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -67,63 +61,40 @@
 
 
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Header Top</h5>
+<h5 class="customizer-block__header" data-display="basic">Footer Colors</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
-{{ renderContent 'dimensionLessVar'
-    displayCategory= "advanced"
-    title="Header Top Height"
-    dimensionVar="@header-top-height"
-    placeholder="50px"
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Footer Background"
+    colorVar="@footer-background"
+    linkedVar=false
 }}
 {{ renderContent 'colorLessVar'
-    displayCategory= "advanced"
-    title="Header Top Background Color"
-    colorVar="@header-top-bg-color"
+    displayCategory= "basic"
+    title="Footer Color"
+    colorVar="@footer-color"
+    linkedVar=false
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "basic"
+    title="Footer Link Color"
+    colorVar="@footer-link-color"
     linkedVar=true
 }}
 {{ renderContent 'colorLessVar'
-    displayCategory= "advanced"
-    title="Header Top Color"
-    colorVar="@header-top-color"
+    displayCategory= "basic"
+    title="Footer Link Hover Color"
+    colorVar="@footer-link-hover-color"
     linkedVar=true
-}}
-{{ renderContent 'elementStatus'
-    displayCategory= "basic"
-    title="Show Header Top"
-    elclass=".header-top"
-    visibleByDefault=true
-}}
-{{ renderContent 'elementStatus'
-    displayCategory= "basic"
-    title="Show Header Top Contacts"
-    elclass=".header-top__contact"
-    visibleByDefault=true
-}}
-{{ renderContent 'elementStatus'
-    displayCategory= "basic"
-    title="Show Header Top LangMenu"
-    elclass=".header-top__language-menu"
-    visibleByDefault=true
-}}
-{{ renderContent 'elementStatus'
-    displayCategory= "basic"
-    title="Show Header Top Navigation"
-    elclass=".header-top .nav"
-    visibleByDefault=true
-}}
-{{ renderContent 'elementStatus'
-    displayCategory= "basic"
-    title="Show Header Top Search"
-    elclass=".main-navigation__search-btn-wrp"
-    visibleByDefault=false
 }}
 <!-- Customizer block body [end]-->
 
 
-    <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Header Middle</h5>
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header" data-display="basic">Logo</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -137,14 +108,89 @@
     displayCategory= "basic"
     title="Logo Top"
     dimensionVar="@logo-top"
-    placeholder="24px"
+    placeholder="30px"
 }}
 {{ renderContent 'dimensionLessVar'
     displayCategory= "basic"
     title="Logo Width"
     dimensionVar="@logo-width"
-    placeholder="120px"
+    placeholder="130px"
 }}
+<!-- Customizer block body [end]-->
+
+
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header" data-display="advanced">Header Top Colors</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'colorLessVar'
+displayCategory= "advanced"
+title="Header Top Background Color"
+colorVar="@header-top-bg-color"
+linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+displayCategory= "advanced"
+title="Header Top Color"
+colorVar="@header-top-color"
+linkedVar=true
+}}
+<!-- Customizer block body [end]-->
+
+
+
+<!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header" data-display="advanced">Header Top</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'dimensionLessVar'
+    displayCategory= "advanced"
+    title="Header Top Height"
+    dimensionVar="@header-top-height"
+    placeholder="50px"
+}}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Top"
+    elclass=".header-top"
+    visibleByDefault=true
+}}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Top Contacts"
+    elclass=".header-top__contact"
+    visibleByDefault=true
+}}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Top LangMenu"
+    elclass=".header-top__language-menu"
+    visibleByDefault=true
+}}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Top Navigation"
+    elclass=".header-top .nav"
+    visibleByDefault=true
+}}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Top Search"
+    elclass=".header-top .main-navigation__search-btn-wrp, .header-top .main-navigation__search-box"
+    visibleByDefault=false
+}}
+<!-- Customizer block body [end]-->
+
+
+
+    <!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header" data-display="advanced">Header Middle Colors</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
 {{ renderContent 'colorLessVar'
     displayCategory= "advanced"
     title="Header Middle Background Color"
@@ -153,15 +199,21 @@
 }}
 {{ renderContent 'colorLessVar'
     displayCategory= "advanced"
-    title="Header Middle Border Color"
+    title="Header Border Color"
     colorVar="@header-border-color"
     linkedVar=true
 }}
-{{ renderContent 'dimensionLessVar'
+{{ renderContent 'colorLessVar'
     displayCategory= "advanced"
-    title="Header Middle Height"
-    dimensionVar="@header-middle-height"
-    placeholder="120px"
+    title="Header Middle Search Btn Bg"
+    colorVar="@header-middle-search-btn-bg"
+    linkedVar=true
+}}
+{{ renderContent 'colorLessVar'
+    displayCategory= "advanced"
+    title="Header Middle Search Btn Hover"
+    colorVar="@header-middle-search-btn-hover"
+    linkedVar=true
 }}
 {{ renderContent 'colorLessVar'
     displayCategory= "advanced"
@@ -175,29 +227,58 @@
     colorVar="@social-icons-hover-color"
     linkedVar=true
 }}
+<!-- Customizer block body [end]-->
+
+
+
+    <!-- Customizer block header [begin]-->
+<h5 class="customizer-block__header" data-display="advanced">Header Middle</h5>
+<!-- Customizer block header [end]-->
+
+<!-- Customizer block body [begin] -->
+{{ renderContent 'dimensionLessVar'
+    displayCategory= "advanced"
+    title="Header Middle Height"
+    dimensionVar="@header-middle-height"
+    placeholder="130px"
+}}
+{{ renderContent 'dimensionLessVar'
+    displayCategory= "advanced"
+    title="Header Middle Search Height"
+    dimensionVar="@header-middle-search-height"
+    placeholder="44px"
+}}
 {{ renderContent 'elementStatus'
-    displayCategory= "basic"
+    displayCategory= "advanced"
     title="Show Header Middle"
     elclass=".header-middle-wrp"
     visibleByDefault=true
 }}
 {{ renderContent 'elementStatus'
-    displayCategory= "basic"
+    displayCategory= "advanced"
     title="Show Header Middle Logo"
     elclass=".header-middle__logo"
     visibleByDefault=true
 }}
 {{ renderContent 'elementStatus'
-    displayCategory= "basic"
-    title="Show Header Middle SocIcons"
-    elclass=".header-middle__social-icons"
+    displayCategory= "advanced"
+    title="Show Header Middle Search"
+    elclass=".header-middle__search-wrp"
     visibleByDefault=true
 }}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Middle SocIcons"
+    elclass=".header-middle__social-icon"
+    visibleByDefault=false
+}}
+<!-- TODO:  Header Middle Search Height-->
+<!-- TODO:  Show Header Middle Search-->
 <!-- Customizer block body [end]-->
 
 
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Header Main Menu</h5>
+<h5 class="customizer-block__header" data-display="advanced">Main Menu Colors</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -255,11 +336,17 @@
     colorVar="@nav-search-btn-color"
     linkedVar=true
 }}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show Header Main Menu Search"
+    elclass=".main-navigation .main-navigation__search-btn-wrp, .main-navigation .main-navigation__search-box"
+    visibleByDefault=false
+}}
 <!-- Customizer block body [end]-->
 
 
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Breadcrumbs</h5>
+<h5 class="customizer-block__header" data-display="advanced">Breadcrumbs</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -287,11 +374,17 @@
     colorVar="@breadcrumbs-link-hover-color"
     linkedVar=true
 }}
+{{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title="Show breadcrumbs"
+    elclass=".breadcrumbs"
+    visibleByDefault=true
+}}
 <!-- Customizer block body [end]-->
 
 
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Sub Navigation</h5>
+<h5 class="customizer-block__header" data-display="advanced">Sub Menu Colors</h5>
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
@@ -346,33 +439,34 @@
 <!-- Customizer block body [end]-->
 
 
+
+
+
+
+
+<!-- Template -->
+
 <!-- Customizer block header [begin]-->
-<h5 class="customizer-block__header">Footer Colors</h5>
+<!-- <h5 class="customizer-block__header">test</h5> -->
 <!-- Customizer block header [end]-->
 
 <!-- Customizer block body [begin] -->
-{{ renderContent 'colorLessVar'
+<!-- {{ renderContent 'colorLessVar'
     displayCategory= "basic"
-    title="Footer Background"
-    colorVar="@footer-background"
+    title="Main-color"
+    colorVar="@main-color"
     linkedVar=false
-}}
-{{ renderContent 'colorLessVar'
-    displayCategory= "basic"
-    title="Footer Color"
-    colorVar="@footer-color"
-    linkedVar=false
-}}
-{{ renderContent 'colorLessVar'
-    displayCategory= "basic"
-    title="Footer Link Color"
-    colorVar="@footer-link-color"
-    linkedVar=true
-}}
-{{ renderContent 'colorLessVar'
-    displayCategory= "basic"
-    title="Footer Link Hover Color"
-    colorVar="@footer-link-hover-color"
-    linkedVar=true
-}}
-<!-- Customizer block body [end]-->
+}} -->
+<!-- {{ renderContent 'dimensionLessVar'
+    displayCategory= "advanced"
+    title=""
+    dimensionVar=""
+    placeholder="50px"
+}} -->
+<!-- {{ renderContent 'elementStatus'
+    displayCategory= "advanced"
+    title=""
+    elclass=""
+    visibleByDefault=true
+}} -->
+<!-- Customizer block body [end] -->
