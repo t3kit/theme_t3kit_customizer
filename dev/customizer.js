@@ -37,7 +37,11 @@ jQuery(function($) {
     // Color Picker Livereload checkbox
     var $customizerColorLivereload = $('.js__color-livereload');
     var colorLivereload;
-    if ($customizerColorLivereload.prop('checked')) { colorLivereload = true; }
+    if ($customizerColorLivereload.prop('checked')) {
+        colorLivereload = true;
+    } else {
+        colorLivereload = false;
+    }
     $customizerColorLivereload.on('click', function() {
         if ($(this).prop('checked')) {
             colorLivereload = true;
@@ -82,6 +86,13 @@ jQuery(function($) {
             '.cp-apply{background: #fff; display: inline-block; float: left; width: 88px;text-align:center; padding: 5px 0; margin-left: 57px; font-weight: 700; color:#000!important;}' +
             '.cp-z-cursor{border-width:8px; margin-top:-8px;}',
         renderCallback: function($elm, toggled) {
+            var renderLess = function(el, colors) {
+                lessvar = el[0].dataset.lessvar;
+                lessObj[lessvar] = '#' + colors.HEX;
+                less.modifyVars(lessObj);
+                localStorage.setItem('lessObj', JSON.stringify(lessObj));
+            };
+
             var colors = this.color.colors;
             $('.cp-disp')
                 .css({
@@ -101,51 +112,38 @@ jQuery(function($) {
                     position: 'fixed',
                     'z-index': 5000
                 });
-            if (toggled === true) {
+            if (colorLivereload) {
+
+                if (toggled === true) {
+                    bgColor = $elm.css('background-color');
+                    this.color.setColor(bgColor, 'HEX');
+                    this.render();
+                    $('.cp-apply').hide();
+                }
+                if (toggled === undefined) {
+                    renderLess($elm, colors);
+                }
+                if (toggled === false) {
+                    renderLess($elm, colors);
+                }
+            }
+            if (toggled === true && !colorLivereload) {
                 bgColor = $elm.css('background-color');
                 this.color.setColor(bgColor, 'HEX');
                 this.render();
-                if (colorLivereload) {
-                    $('.cp-apply').hide();
-                } else {
-                    $('.cp-apply').show();
-                }
-            }
-            if (colorLivereload) {
-                if (toggled === undefined) {
-                    lessvar = $elm[0].dataset.lessvar;
-                    lessObj[lessvar] = '#' + colors.HEX;
-                    less.modifyVars(lessObj);
-                    localStorage.setItem('lessObj', JSON.stringify(lessObj));
-                }
-            } else {
-                if (toggled === false) {
-                    lessvar = $elm[0].dataset.lessvar;
-                    lessObj[lessvar] = '#' + colors.HEX;
-                    less.modifyVars(lessObj);
-                    localStorage.setItem('lessObj', JSON.stringify(lessObj));
-                }
-            }
-            if (toggled === true) {
+                $('.cp-apply').show();
                 $('.cp-apply').off('.cp-click');
                 $('.cp-apply').on('click.cp-click', function(e) {
                     e.preventDefault();
                     e.stopImmediatePropagation();
-                    lessvar = $elm[0].dataset.lessvar;
-                    lessObj[lessvar] = '#' + colors.HEX;
-                    less.modifyVars(lessObj);
-                    localStorage.setItem('lessObj', JSON.stringify(lessObj));
+                    renderLess($elm, colors);
                 });
                 $(window).off('.cp-keyup');
                 $(window).on('keyup.cp-keyup', function(e) {
                     if (e.keyCode === 13) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
-                        lessvar = $elm[0].dataset.lessvar;
-                        lessObj[lessvar] = '#' + colors.HEX;
-                        less.modifyVars(lessObj);
-                        localStorage.setItem('lessObj', JSON.stringify(lessObj));
-                        this.blur();
+                        renderLess($elm, colors);
                     }
                 });
             }
@@ -154,7 +152,7 @@ jQuery(function($) {
 
     });
 
-    $colorPickerReturnToDefault.on('click.rrr', function(e) {
+    $colorPickerReturnToDefault.on('click.return', function(e) {
         e.preventDefault();
         var el = $(this).prev('.js__customizer-color-picker__val');
         lessvar = el.data('lessvar');
@@ -191,7 +189,6 @@ jQuery(function($) {
     });
 
     // Customizer Element Status
-
     var statusRegEx = function(key) {
         statusKey = key.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
     };
@@ -267,7 +264,7 @@ jQuery(function($) {
         $customizer .toggleClass('_hide-customizer');
     });
 
-    // Customizer Clear Cache
+    // Customizer Clean Cache
     $customizerFooterBtnClearCache.on('click', function(e) {
         e.preventDefault();
         // less
@@ -355,6 +352,7 @@ jQuery(function($) {
     customizerDisplay($displayAdvanced, $advanced);
     // customizerDisplay($displayExpert, $expert);
 
+    // clipboard
     var clipboard = new Clipboard('.customizer-modal__clipboard-btn'); //jshint ignore:line
 
 });
