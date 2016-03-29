@@ -3,9 +3,14 @@
 /* global lessObj:true */
 /* global statusObj */
 /* global statusObj:true */
+/* global logoObj */
+/* global logoObj:true */
+/* global Clipboard */
+/* global alert */
 
 var lessvar;
 var statusKey;
+var bgColor;
 jQuery(function($) {
 
     // Save variables
@@ -32,6 +37,27 @@ jQuery(function($) {
     var $customizerModal = $('.js__customizer-modal-overlay');
     var $customizerModalInput = $('.js__customizer-modal__text');
 
+    // Logo link variables
+    var $logo = $('.header-middle__logo').find('.header-middle__logo-img');
+    var $defaultLogoSrc = $logo.attr('src');
+    var $logoInput = $('.js__customizer-logo-link__val');
+
+    // Color Picker Livereload checkbox
+    var $customizerColorLivereload = $('.js__color-livereload');
+    var colorLivereload;
+    if ($customizerColorLivereload.prop('checked')) {
+        colorLivereload = true;
+    } else {
+        colorLivereload = false;
+    }
+    $customizerColorLivereload.on('click', function() {
+        if ($(this).prop('checked')) {
+            colorLivereload = true;
+        } else {
+            colorLivereload = false;
+        }
+    });
+
     // Customizer Color Picker
     $colorPicker.colorPicker({
         customBG: '#777',
@@ -42,7 +68,7 @@ jQuery(function($) {
         animationSpeed: 0,
         opacity: false,
         doRender: false,
-
+        GPU: true,
         buildCallback: function($elm) {
             var colorInstance = this.color;
             var that = this;
@@ -55,19 +81,27 @@ jQuery(function($) {
                 that.render();
                 this.blur();
             });
+            $elm.append('<a href="/" class="cp-apply">OK</a>');
         },
         cssAddon:
             '.cp-color-picker{ border-radius:0;}' +
-            '.cp-color-input{ width:100px; clear:both; height:32px}' +
+            '.cp-color-input{ width:100px; clear:both; height:32px; float: left;}' +
             '.cp-color-input__cp-HEX{ width:100px; height:26px, color:#000; font-size: 16px;}' +
             '.cp-disp{padding:10px; margin-bottom:6px; font-size:19px; height:34px; line-height:20px}' +
             '.cp-xy-slider{width:200px; height:200px;}' +
             '.cp-xy-cursor{width:16px; height:16px; border-width:2px; margin:-8px}' +
             '.cp-z-slider{height:200px; width:40px;}' +
+            '.cp-apply{background: #fff; display: inline-block; float: left; width: 88px;text-align:center; padding: 5px 0; margin-left: 57px; font-weight: 700; color:#000!important;}' +
             '.cp-z-cursor{border-width:8px; margin-top:-8px;}',
         renderCallback: function($elm, toggled) {
-            var colors = this.color.colors;
+            var renderLess = function(el, colors) {
+                lessvar = el[0].dataset.lessvar;
+                lessObj[lessvar] = '#' + colors.HEX;
+                less.modifyVars(lessObj);
+                localStorage.setItem('lessObj', JSON.stringify(lessObj));
+            };
 
+            var colors = this.color.colors;
             $('.cp-disp')
                 .css({
                     backgroundColor: '#' + colors.HEX,
@@ -86,22 +120,55 @@ jQuery(function($) {
                     position: 'fixed',
                     'z-index': 5000
                 });
-            if (toggled || toggled === undefined) {
-                lessvar = $elm[0].dataset.lessvar;
-                lessObj[lessvar] = '#' + colors.HEX;
-                less.modifyVars(lessObj);
-                localStorage.setItem('lessObj', JSON.stringify(lessObj));
+            if (colorLivereload) {
+
+                if (toggled === true) {
+                    bgColor = $elm.css('background-color');
+                    this.color.setColor(bgColor, 'HEX');
+                    this.render();
+                    $('.cp-apply').hide();
+                }
+                if (toggled === undefined) {
+                    renderLess($elm, colors);
+                }
+                if (toggled === false) {
+                    renderLess($elm, colors);
+                }
             }
-        }
+            if (toggled === true && !colorLivereload) {
+                bgColor = $elm.css('background-color');
+                this.color.setColor(bgColor, 'HEX');
+                this.render();
+                $('.cp-apply').show();
+                $('.cp-apply').off('.cp-click');
+                $('.cp-apply').on('click.cp-click', function(e) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    renderLess($elm, colors);
+                });
+                $(window).off('.cp-keyup');
+                $(window).on('keyup.cp-keyup', function(e) {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        renderLess($elm, colors);
+                    }
+                });
+            }
+
+        },
+
     });
 
-    // Color Picker Return to default color
-    $colorPickerReturnToDefault.on('click', function(e) {
+    $colorPickerReturnToDefault.on('click.return', function(e) {
         e.preventDefault();
-        lessvar = $(this).prev('.js__customizer-color-picker__val').data('lessvar');
+        var el = $(this).prev('.js__customizer-color-picker__val');
+        lessvar = el.data('lessvar');
         delete lessObj[lessvar];
         less.modifyVars(lessObj);
         localStorage.setItem('lessObj', JSON.stringify(lessObj));
+        bgColor = el.css('background-color');
+        return false;
     });
 
     // Customizer Dimension
@@ -130,7 +197,6 @@ jQuery(function($) {
     });
 
     // Customizer Element Status
-
     var statusRegEx = function(key) {
         statusKey = key.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
     };
@@ -138,7 +204,6 @@ jQuery(function($) {
         var elem = $(this).data('elclass');
         statusKey = $(this).data('status');
         statusRegEx(statusKey);
-        // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (statusObj[statusKey] !== undefined) {
             if (statusObj[statusKey]) {
                 $(elem).show();
@@ -158,7 +223,6 @@ jQuery(function($) {
         var elem = $(this).data('elclass');
         statusKey = $(this).data('status');
         statusRegEx(statusKey);
-        // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (!$(this).prop('checked')) {
             statusObj[statusKey] = 0;
             $(elem).hide();
@@ -173,8 +237,6 @@ jQuery(function($) {
             var elem = $(this).data('elclass');
             statusKey = $(this).data('status');
             statusRegEx(statusKey);
-            // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
-
             if (statusObj[statusKey] !== undefined) {
                 if ($(this).attr('checked') === 'checked') {
                     $(elem).show();
@@ -193,7 +255,6 @@ jQuery(function($) {
         var prevElem = $(this).prevAll('.js__customizer-element-status__val');
         statusKey = prevElem.data('status');
         statusRegEx(statusKey);
-        // statusKey = statusKey.replace(/(\ )\w{1}/g, function(v) { return v.toUpperCase(); }).replace(/(\ )\w{0}/g, '').replace(/()\w{1}/i, function(v) { return v.toLowerCase(); });
         if (prevElem.attr('checked') === 'checked') {
             $(prevElem.data('elclass')).show();
             prevElem.prop('checked', true);
@@ -211,7 +272,7 @@ jQuery(function($) {
         $customizer .toggleClass('_hide-customizer');
     });
 
-    // Customizer Clear Cache
+    // Customizer Clean Cache
     $customizerFooterBtnClearCache.on('click', function(e) {
         e.preventDefault();
         // less
@@ -221,8 +282,13 @@ jQuery(function($) {
 
         // elements status
         defaultElemStatus();
-        localStorage.removeItem('stausObj');
+        localStorage.removeItem('statusObj');
         statusObj = {};
+
+        // logo link
+        localStorage.removeItem('logoObj');
+        logoObj = {};
+        $logo.attr('src', $defaultLogoSrc);
     });
 
     // Customizer Generate TYPO3 Theme config
@@ -245,8 +311,6 @@ jQuery(function($) {
         });
 
         var statusObjTmp = $.extend({},statusObj);
-        console.log(statusObjTmp);
-        console.log(statusObj);
         $.each(statusObjTmp, function(key) {
             var newKey = 'themes.configuration.elem.status.' + key;
             statusObjTmp[newKey] = statusObjTmp[key];
@@ -272,25 +336,25 @@ jQuery(function($) {
         $body.toggleClass('_freeze-body');
         return false;
     });
+    $('.js__customizer-modal__close-btn').on('click', function() {
+        $body.toggleClass('_freeze-body');
+        return false;
+    });
 
     // Customizer Header checkboxes. Display basic;advanced;expert view
-    // var blockHeaders = $('.customizer-block__header');
-
     var $basic = $('[data-display="basic"]');
     var $advanced = $('[data-display="advanced"]');
-    var $expert = $('[data-display="expert"]');
+    // var $expert = $('[data-display="expert"]');
 
     var $displayBasic = $('.js__display-basic');
     var $displayAdvanced = $('.js__display-advanced');
-    var $displayExpert = $('.js__display-expert');
+    // var $displayExpert = $('.js__display-expert');
 
     var customizerDisplay = function($checkbox, $var) {
         if (!$checkbox.prop('checked')) {$var.hide();}
         $checkbox.on('click', function() {
             if (!$(this).prop('checked')) {
                 $var.hide();
-// TODO ++++++++++++++++
-
             } else {
                 $var.show();
             }
@@ -299,7 +363,43 @@ jQuery(function($) {
     };
     customizerDisplay($displayBasic, $basic);
     customizerDisplay($displayAdvanced, $advanced);
-    customizerDisplay($displayExpert, $expert);
+    // customizerDisplay($displayExpert, $expert);
 
+    // clipboard
+    var clipboard = new Clipboard('.customizer-modal__clipboard-btn'); //jshint ignore:line
+
+    // LOGO link
+    // change logo link
+    if (logoObj.logoLink !== undefined) {
+        if (logoObj.logoLink) {
+            $logoInput.val(logoObj.logoLink);
+            $logo.attr('src', logoObj.logoLink);
+        }
+    }
+    // change logo
+    $logoInput.on('change', function(e) {
+        e.preventDefault();
+        var val = $(this).val();
+        $.get(val)
+            .done(function() {
+                if (val) {
+                    $logo.attr('src', val);
+                    logoObj.logoLink = val;
+                    localStorage.setItem('logoObj', JSON.stringify(logoObj));
+                } else {
+                    $logo.attr('src', $defaultLogoSrc);
+                }
+            }).fail(function() {
+                alert('image not found');
+            });
+    });
+
+    // Logo link Return to default
+    $('.js__customizer-logo-link__return-to-default').on('click', function(e) {
+        e.preventDefault();
+        $logo.attr('src', $defaultLogoSrc);
+        $logoInput.val('');
+        delete logoObj.logoLink;
+        localStorage.setItem('logoObj', JSON.stringify(logoObj));
+    });
 });
-

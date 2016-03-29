@@ -102,7 +102,7 @@
     top: 50%;
     left: 50%;
     width: 60%;
-    height: 400px;
+    height: 430px;
     background: #ccc;
     margin: 0 auto;
     margin-top: -200px;
@@ -117,16 +117,72 @@
     opacity: 1;
     visibility: visible;
 }
+.customizer-modal__header {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 40px;
+    color: #666;
+}
 .customizer-modal__text {
     width: 70%;
     margin: 0 auto;
     display: block;
-    height: 300px;
+    height: 290px;
     display: block;
-    position: relative;
-    top: 30px;
     color: #000;
 }
+.customizer-modal__clipboard-btn{
+    width: 200px;
+    font-size: 14px;
+    color: #777;
+    display: block;
+    padding: 6px;
+    border: 1px solid #999;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background: #eee;
+
+}
+.customizer-modal__clipboard-btn:hover{
+    color: #777;
+    background: #ddd;
+}
+.customizer-modal__clipboard-btn:focus{
+    color: #777;
+}
+.customizer-modal__close-btn{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 43px;
+    line-height: 1;
+    height: 36px;
+    cursor: pointer;
+}
+
+.customizer-modal__close-btn:before, .customizer-modal__close-btn:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    height: 2px;
+    width: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    background: #777;
+}
+.customizer-modal__close-btn:before {
+    transform: rotate(135deg);
+}
+.customizer-modal__close-btn:after {
+    transform: rotate(-135deg);
+}
+
+
 
 
 // Hide Customizer
@@ -506,6 +562,43 @@
     left: -166px;
     width: 140px;
 }
+
+
+// Logo link
+// ---------------------------------------------------------
+
+.customizer-logo-link {
+    width: 100%;
+    height: 26px;
+    z-index: 11000;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+.customizer-logo-link__title {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    line-height: 24px;
+    font-size: 11px;
+    padding-left: 4px;
+    font-weight: 400;
+}
+.customizer-logo-link__val{
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 160px;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    font-weight: 300;
+    -webkit-appearance: none;
+    border: none;
+    border-left: 1px solid #EEE;
+    padding-left: 3px;
+}
+
 
 
 @import "color.less";

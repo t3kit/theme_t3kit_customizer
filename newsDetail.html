@@ -4,7 +4,7 @@
     
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Login Form</title>
+        <title>News Details</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="robots" content="noindex">
@@ -993,8 +993,8 @@ _active"><a  href="content.html" class="main-navigation__item-link js__main-navi
 <li class="main-navigation__sub-item 
 "><a class="main-navigation__sub-item-link" href="typicalPageContent.html">Typical Page Content</a></li><li class="main-navigation__sub-item 
 "><a class="main-navigation__sub-item-link" href="specialElements.html">Special Elements</a></li><li class="main-navigation__sub-item 
-_active"><a class="main-navigation__sub-item-link" href="formElements.html">Form Elements</a></li><li class="main-navigation__sub-item 
-"><a class="main-navigation__sub-item-link" href="plugins.html">Plugins</a></li><li class="main-navigation__sub-item 
+"><a class="main-navigation__sub-item-link" href="formElements.html">Form Elements</a></li><li class="main-navigation__sub-item 
+_active"><a class="main-navigation__sub-item-link" href="plugins.html">Plugins</a></li><li class="main-navigation__sub-item 
 "><a class="main-navigation__sub-item-link" href="contentElements.html">Content Elements</a></li></ul>
                     </li>
 
@@ -1110,7 +1110,6 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
 
 
 
-                                <li class="breadcrumbs__list-item"><a class="breadcrumbs__list-link" href="formElements.html">Form Elements</a></li>
 
 
 
@@ -1126,6 +1125,7 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
 
 
 
+                                <li class="breadcrumbs__list-item"><a class="breadcrumbs__list-link" href="plugins.html">Plugins</a></li>
 
 
 
@@ -1200,10 +1200,11 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
 
 
 
-            <li  class="breadcrumbs__list-item _active">Login Form</li>
+            <li  class="breadcrumbs__list-item _active">News Details</li>
         </ol>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -1263,12 +1264,12 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
             </ul>
                             </li><li class="sub-navigation__item">
                                 <a href="formElements.html" class="sub-navigation__link _sub-level-2 
-            _active _open">
+            ">
                                     Form Elements
                                 </a>
                                 <ul class="sub-navigation__item-list _sub-list-level-3">
             <li class="sub-navigation__item">
-                                            <a  href="loginForm.html" class="sub-navigation__link _sub-level-3  _active _curent 
+                                            <a  href="loginForm.html" class="sub-navigation__link _sub-level-3 
             ">
                                                 Login Form
                                             </a>
@@ -1284,7 +1285,7 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
                                         </li></ul>
                             </li><li class="sub-navigation__item">
                                 <a href="plugins.html" class="sub-navigation__link _sub-level-2 
-            ">
+            _active _open">
                                     Plugins
                                 </a>
                                 <ul class="sub-navigation__item-list _sub-list-level-3">
@@ -1296,7 +1297,7 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
                                             <ul class="sub-navigation__item-list _sub-list-level-4">
             </ul>
                                         </li><li class="sub-navigation__item">
-                                            <a  href="newsDetail.html" class="sub-navigation__link _sub-level-3 
+                                            <a  href="newsDetail.html" class="sub-navigation__link _sub-level-3  _active _curent 
             ">
                                                 News Details
                                             </a>
@@ -1394,125 +1395,83 @@ _active"><a class="main-navigation__sub-item-link" href="formElements.html">Form
                             </li></ul>
                 </div>
             </div>
+
         </div>
         <div class="col-md-9">
-            <h2>Login form</h2>
-            <div class="tx-felogin-pi1">
-                <h3 class="felogin-welcome-header">User login</h3>
-                <div class="alert alert-info">Enter your username and password here in order to log in on the website:
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                </div>
-                <!-- ###LOGIN_FORM### -->
-                <form class="form-horizontal" action="" target="_top" onsubmit="; return true;">
-                    <fieldset>
-                        <legend>Login</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="user">Username:</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" id="user" name="user" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="pass">Password:</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="password" id="pass" name="pass" value="" data-rsa-encryption="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
-                                <input class="btn btn-default" type="button" name="submit" value="Login">
-                            </div>
-                            <!--###FORGOTP_VALID###-->
-                            <div class="col-sm-4">
-                                <p class="btn btn-link forgot-pass-link"><a href="" rel="nofollow">Forgot your password?</a></p>
-                                <!--###FORGOTP_VALID###-->
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-                <!-- ###LOGIN_FORM### -->
-            </div>
 
-            <div class="tx-felogin-pi1">
-                <h3 class="felogin-forgot-header">Forgot your password?</h3>
-                <div class="alert alert-info">Please enter your username or email address. Instructions for resetting the password will be immediately emailed to you.
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                </div>
-                <!-- ###FORGOT_FORM### -->
-                <form class="form-horizontal" action="" >
-                    <div class="felogin-hidden">
-                        <input type="hidden" name="tx_felogin_pi1[forgot_hash]" value="bb3a244e6e0d7a93c9c7c0c502a63933">
+            <div id="c79">
+                <div class="news news-single">
+                    <div class="article" itemscope="itemscope" itemtype="http://schema.org/Article">
+                        <div class="news-article-header">
+                            <h3 itemprop="headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                        </div>
+                        <div class="news-article-footer">
+                            <p>
+                                <!-- date -->
+                                <span class="news-list-date">
+                                    <time datetime="2015-10-06"> 10/06/2015
+                                        <meta itemprop="datePublished" content="2015-10-06"> </time>
+                                </span>
+                                <!-- categories -->
+                                <span class="news-list-category"> Technology </span>
+                                <!-- Tags -->
+                                <span class="news-list-tags" itemprop="keywords"> Tag Ipsum </span>
+                                <!-- author -->
+                                <span class="news-list-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"> created by
+                                    <span itemprop="name">John Doe</span>
+                                </span>
+                            </p>
+                        </div>
+                        <!-- teaser -->
+                        <div class="teaser-text" itemprop="description">
+                            <p>Ut ullamcorper tincidunt ligula eu mollis. Proin tristique scelerisque lobortis. Cras faucibus erat dictum metus aliquet maximus. Nullam ac nisl eu eros luctus lacinia sed consequat leo.</p>
+                        </div>
+                        <!-- fal media files -->
+                        <div class="news-img-wrap">
+                            <div class="outer">
+                                <div class="mediaelement mediaelement-image">
+                                    <a href="fileadmin/_processed_/csm_foto1_a9a1e3b383.jpg" title="Foto 1 title" class="{$styles.content.imgtext.linkWrap.lightboxCssClass}" rel="lightbox[myImageSet]">
+                                        <img title="Foto 1 title" alt="Foto 1 alternative text" src="images/foto1.jpg" width="282" height="188"> </a>
+                                </div>
+                                <p class="news-img-caption"> This is Öresundsbron, the bridge between Sweden and Denmark. </p>
+                            </div>
+                        </div>
+                        <!-- main text -->
+                        <div class="news-text-wrap" itemprop="articleBody">
+                            <p>Nam id dignissim libero. Donec tempus enim sit amet interdum elementum. In suscipit faucibus pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque in euismod magna, feugiat dapibus
+                                ante. Nulla efficitur tempor molestie. In vel ex orci. Nullam velit ex, tempus eu velit non, condimentum vulputate massa. Phasellus eu tortor venenatis, volutpat turpis eget, gravida tellus. Ut iaculis, metus vitae tempor dignissim,
+                                orci augue dapibus sapien, sed aliquet arcu ligula in lacus. </p>
+                            <p> Suspendisse tempus maximus hendrerit. Praesent finibus, dolor ut sagittis lobortis, lacus orci interdum ex, at congue justo ante eget arcu. Duis congue vestibulum lectus, et ornare lorem bibendum vel. Nunc tristique porttitor sodales.
+                                Phasellus nibh dui, tincidunt eget massa id, suscipit venenatis ex. Curabitur vel erat eros. Quisque dapibus urna vel mauris convallis aliquam. Duis faucibus ex dictum, ullamcorper eros at, auctor mauris. Pellentesque tristique
+                                nulla sed leo mattis, ut aliquet neque blandit. Praesent blandit elementum velit, non ultrices lectus dictum non. Nunc porttitor tempus lacus et lacinia. </p>
+                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce consectetur nulla ut dolor tincidunt, at auctor nisi faucibus. Etiam sit amet mauris nec urna tristique tempus ut sit amet lacus. Suspendisse
+                                potenti. Pellentesque condimentum sed sem eu tempus. Cras at ipsum porta, semper lectus id, sodales massa. Nam dictum magna sed metus ullamcorper, vitae bibendum urna efficitur. Ut egestas ante ante, at efficitur nisi mollis sed.
+                                Sed dui sapien, pulvinar in nunc id, facilisis venenatis tort</p>
+                        </div>
+                        <!-- related things -->
+                        <div class="news-related-wrap">
+                            <!-- Related news records -->
+                            <div class="news-related news-related-news">
+                                <h4> Related news </h4>
+                                <ul>
+                                    <li>
+                                        <span class="news-related-news-date">09/15/2015</span> <a title="Nullam sagittis condimentum est quis malesuada." href=""> Nullam sagittis condimentum est quis malesuada.</a> </li>
+                                </ul>
+                            </div>
+                            <!-- FAL related files -->
+                            <div class="news-related news-related-files">
+                                <h4> Related files </h4>
+                                <ul>
+                                    <li>
+                                        <span class="news-related-files-link"> <a href="" class="download-link basic-class jpg">temp-carousel-1.jpg</a> </span>
+                                        <span class="news-related-files-size"> 58 KB </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <fieldset>
-                        <legend>Reset Password</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="tx_felogin_pi1-forgot-email">Username or email address:</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" name="tx_felogin_pi1[forgot_email]" id="tx_felogin_pi1-forgot-email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
-                                <input class="btn btn-default" type="button" name="submit" value="Reset Password">
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="btn btn-link return-to-login"><a href="" rel="nofollow">Return to login form</a>&nbsp;</p>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-                <!-- ###FORGOT_FORM### -->
+                </div>
             </div>
-
-            <div class="tx-felogin-pi1">
-                <form class="form-horizontal" action="" target="_top">
-                    <fieldset>
-                        <legend>Logout</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Username:</label>
-                            <div class="col-sm-9">
-                                <p class="form-control-static">1111</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
-                                <input class="btn btn-default" type="button" name="submit" value="Logout">
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-
-
-
-            <div class="tx-felogin-pi1">
-                <h3 class="felogin-change-header">Change your password</h3>
-                <div class="alert alert-info">Please enter your new password twice. Password needs a minimum length of 6 chars.<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
-
-                <form class="form-horizontal">
-                    <fieldset>
-                        <legend>Change your password</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="tx_felogin_pi1-newpassword1">Enter new password</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="password" name="tx_felogin_pi1[password1]" id="tx_felogin_pi1-newpassword1">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="tx_felogin_pi1-newpassword2">Repeat new password</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="password" name="tx_felogin_pi1[password2]" id="tx_felogin_pi1-newpassword2">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
-                                <input class="btn btn-default" type="submit" name="tx_felogin_pi1[changepasswordsubmit]" value="Change your password">
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-
 
         </div>
     </div>

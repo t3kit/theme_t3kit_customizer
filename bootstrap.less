@@ -863,6 +863,8 @@
 @page-header-border-color:    @gray-lighter;
 //** Width of horizontal description list titles
 @dl-horizontal-offset:        @component-offset-horizontal;
+//** Point at which .dl-horizontal becomes horizontal
+@dl-horizontal-breakpoint:    @grid-float-breakpoint;
 //** Horizontal line color.
 @hr-border:                   @gray-lighter;
 
@@ -885,12 +887,18 @@
 @header-top-bg-color:           @main-body-bg;
 @header-top-color:              fade(@main-text-color, 50%);
 
-@header-middle-height:          120px;
+@header-middle-height:          130px;
 @header-middle-bg-color:        @main-body-bg;
 @header-border-color:           @border-color;
 
+// Header middle search form
+@header-middle-search-height:   44px;
+@header-middle-search-btn-bg:   lighten(@main-text-color, 30%);
+@header-middle-search-btn-hover:lighten(@main-color, 15%);
+
+
 // Logo
-@logo-top:                      24px;
+@logo-top:                      30px;
 @logo-left:                     40px;
 @logo-width:                    120px;
 
@@ -911,7 +919,7 @@
 
 
 // Social icons
-@social-icons-bg-color:         fade(@main-text-color, 50%);
+@social-icons-bg-color:         lighten(@main-text-color, 30%);
 @social-icons-hover-color:      lighten(@main-color, 15%);
 
 // Breadcrumbs
@@ -940,9 +948,6 @@
 @footer-color:                  #eee; //#eee;
 @footer-link-color:             @footer-color;
 @footer-link-hover-color:       @main-link-hover-color;
-
-
-
 
 
 // =========================================================
@@ -1024,10 +1029,8 @@
 
 
 //== Pills
-// @nav-pills-active-link-hover-bg:            @light-grey-color;
-@nav-pills-active-link-hover-color:         @main-text-color;
-
-
+@nav-pills-active-link-hover-bg:            @main-color;
+@nav-pills-active-link-hover-color:         #fff;
 
 // Mixins
 // --------------------------------------------------
@@ -1041,7 +1044,7 @@
 //
 // Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
 
-// Deprecated as of v3.0.1 (will be removed in v4)
+// Deprecated as of v3.0.1 (has been removed in v4)
 .hide-text() {
   font: ~"0/0" a;
   color: transparent;
@@ -1205,7 +1208,7 @@
 // Vendor Prefixes
 //
 // All vendor mixins are deprecated as of v3.2.0 due to the introduction of
-// Autoprefixer in our Gruntfile. They will be removed in v4.
+// Autoprefixer in our Gruntfile. They have been removed in v4.
 
 // - Animations
 // - Backface visibility
@@ -1258,7 +1261,7 @@
 // Prevent browsers from flickering when using CSS 3D transforms.
 // Default value is `visible`, but can be changed to `hidden`
 
-.backface-visibility(@visibility){
+.backface-visibility(@visibility) {
   -webkit-backface-visibility: @visibility;
      -moz-backface-visibility: @visibility;
           backface-visibility: @visibility;
@@ -1491,12 +1494,9 @@
   &.disabled,
   &[disabled],
   fieldset[disabled] & {
-    &,
     &:hover,
     &:focus,
-    &.focus,
-    &:active,
-    &.active {
+    &.focus {
       background-color: @background;
           border-color: @border;
     }
@@ -1968,8 +1968,8 @@
 .container-fixed(@gutter: @grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  (@gutter / 2);
-  padding-right: (@gutter / 2);
+  padding-left:  floor((@gutter / 2));
+  padding-right: ceil((@gutter / 2));
   &:extend(.clearfix all);
 }
 
@@ -2990,7 +2990,7 @@ dd {
     &:extend(.clearfix all); // Clear the floated `dt` if an empty `dd` is present
   }
 
-  @media (min-width: @grid-float-breakpoint) {
+  @media (min-width: @dl-horizontal-breakpoint) {
     dt {
       float: left;
       width: (@dl-horizontal-offset - 20);
@@ -3604,6 +3604,12 @@ output {
   // Placeholder
   .placeholder();
 
+  // Unstyle the caret on `<select>`s in IE10+.
+  &::-ms-expand {
+    border: 0;
+    background-color: transparent;
+  }
+
   // Disabled and read-only inputs
   //
   // HTML5 says that controls under a fieldset > legend:first-child won't be
@@ -3905,10 +3911,10 @@ input[type="checkbox"] {
 .has-feedback label {
 
   & ~ .form-control-feedback {
-     top: (@line-height-computed + 5); // Height of the `label` and its margin
+    top: (@line-height-computed + 5); // Height of the `label` and its margin
   }
   &.sr-only ~ .form-control-feedback {
-     top: 0;
+    top: 0;
   }
 }
 
@@ -4063,7 +4069,7 @@ input[type="checkbox"] {
   .form-group-lg {
     @media (min-width: @screen-sm-min) {
       .control-label {
-        padding-top: ((@padding-large-vertical * @line-height-large) + 1);
+        padding-top: (@padding-large-vertical + 1);
         font-size: @font-size-large;
       }
     }
@@ -4458,12 +4464,12 @@ input[type="button"] {
     border-radius: 0;
   }
   &:first-child:not(:last-child) {
-    border-top-right-radius: @btn-border-radius-base;
+    .border-top-radius(@btn-border-radius-base);
     .border-bottom-radius(0);
   }
   &:last-child:not(:first-child) {
-    border-bottom-left-radius: @btn-border-radius-base;
     .border-top-radius(0);
+    .border-bottom-radius(@btn-border-radius-base);
   }
 }
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
@@ -4559,6 +4565,10 @@ input[type="button"] {
 
     width: 100%;
     margin-bottom: 0;
+    
+    &:focus {
+      z-index: 3;
+    }
   }
 }
 
@@ -4609,18 +4619,18 @@ input[type="button"] {
   text-align: center;
   background-color: @input-group-addon-bg;
   border: 1px solid @input-group-addon-border-color;
-  border-radius: @border-radius-base;
+  border-radius: @input-border-radius;
 
   // Sizing
   &.input-sm {
     padding: @padding-small-vertical @padding-small-horizontal;
     font-size: @font-size-small;
-    border-radius: @border-radius-small;
+    border-radius: @input-border-radius-small;
   }
   &.input-lg {
     padding: @padding-large-vertical @padding-large-horizontal;
     font-size: @font-size-large;
-    border-radius: @border-radius-large;
+    border-radius: @input-border-radius-large;
   }
 
   // Nuke default margins from checkboxes and radios to vertically center within.
@@ -4983,7 +4993,7 @@ input[type="button"] {
   > li > span {
     &:hover,
     &:focus {
-      z-index: 3;
+      z-index: 2;
       color: @pagination-hover-color;
       background-color: @pagination-hover-bg;
       border-color: @pagination-hover-border;
@@ -4995,7 +5005,7 @@ input[type="button"] {
     &,
     &:hover,
     &:focus {
-      z-index: 2;
+      z-index: 3;
       color: @pagination-active-color;
       background-color: @pagination-active-bg;
       border-color: @pagination-active-border;
@@ -5032,7 +5042,71 @@ input[type="button"] {
 }
 
 // @import "../bower_components/bootstrap/less/pager.less";
-// @import "../bower_components/bootstrap/less/labels.less";
+//
+// Labels
+// --------------------------------------------------
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: @label-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+
+  // Add hover effects, but only for links
+  a& {
+    &:hover,
+    &:focus {
+      color: @label-link-hover-color;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  // Empty labels collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+
+  // Quick fix for labels in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+}
+
+// Colors
+// Contextual variations (linked labels get darker on :hover)
+
+.label-default {
+  .label-variant(@label-default-bg);
+}
+
+.label-primary {
+  .label-variant(@label-primary-bg);
+}
+
+.label-success {
+  .label-variant(@label-success-bg);
+}
+
+.label-info {
+  .label-variant(@label-info-bg);
+}
+
+.label-warning {
+  .label-variant(@label-warning-bg);
+}
+
+.label-danger {
+  .label-variant(@label-danger-bg);
+}
+
 // @import "../bower_components/bootstrap/less/badges.less";
 // @import "../bower_components/bootstrap/less/jumbotron.less";
 // @import "../bower_components/bootstrap/less/thumbnails.less";
@@ -5636,6 +5710,42 @@ button.list-group-item {
     border: 0;
     -webkit-appearance: none;
   }
+}
+
+// Embeds responsive
+//
+// Credit: Nicolas Gallagher and SUIT CSS.
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+
+  .embed-responsive-item,
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+// Modifier class for 16:9 aspect ratio
+.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+
+// Modifier class for 4:3 aspect ratio
+.embed-responsive-4by3 {
+  padding-bottom: 75%;
 }
 
 
