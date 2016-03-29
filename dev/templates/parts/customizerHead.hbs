@@ -11,8 +11,8 @@
     <!-- Customizer -->
     <link rel="stylesheet/less" type="text/css" href="bootstrap.less">
     <link rel="stylesheet" href="components.css">
-    <link rel="stylesheet/less" type="text/css" href="customizer.less">
     <link rel="stylesheet" href="local.css">
+    <link rel="stylesheet/less" type="text/css" href="customizer.less">
     <script>
         less = {
           env: "production"
@@ -23,12 +23,16 @@
     <script>
         var lessObj = {};
         var statusObj = {};
+        var logoObj = {};
         if (localStorage.hasOwnProperty('lessObj')) {
             lessObj = JSON.parse(localStorage.getItem('lessObj'));
             less.modifyVars(lessObj);
         }
         if (localStorage.hasOwnProperty('statusObj')) {
             statusObj = JSON.parse(localStorage.getItem('statusObj'));
+        }
+        if (localStorage.hasOwnProperty('logoObj')) {
+            logoObj = JSON.parse(localStorage.getItem('logoObj'));
         }
     </script>
 

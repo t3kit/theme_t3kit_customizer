@@ -3,7 +3,10 @@
 /* global lessObj:true */
 /* global statusObj */
 /* global statusObj:true */
+/* global logoObj */
+/* global logoObj:true */
 /* global Clipboard */
+/* global alert */
 
 var lessvar;
 var statusKey;
@@ -33,6 +36,11 @@ jQuery(function($) {
 
     var $customizerModal = $('.js__customizer-modal-overlay');
     var $customizerModalInput = $('.js__customizer-modal__text');
+
+    // Logo link variables
+    var $logo = $('.header-middle__logo').find('.header-middle__logo-img');
+    var $defaultLogoSrc = $logo.attr('src');
+    var $logoInput = $('.js__customizer-logo-link__val');
 
     // Color Picker Livereload checkbox
     var $customizerColorLivereload = $('.js__color-livereload');
@@ -276,6 +284,11 @@ jQuery(function($) {
         defaultElemStatus();
         localStorage.removeItem('statusObj');
         statusObj = {};
+
+        // logo link
+        localStorage.removeItem('logoObj');
+        logoObj = {};
+        $logo.attr('src', $defaultLogoSrc);
     });
 
     // Customizer Generate TYPO3 Theme config
@@ -355,4 +368,38 @@ jQuery(function($) {
     // clipboard
     var clipboard = new Clipboard('.customizer-modal__clipboard-btn'); //jshint ignore:line
 
+    // LOGO link
+    // change logo link
+    if (logoObj.logoLink !== undefined) {
+        if (logoObj.logoLink) {
+            $logoInput.val(logoObj.logoLink);
+            $logo.attr('src', logoObj.logoLink);
+        }
+    }
+    // change logo
+    $logoInput.on('change', function(e) {
+        e.preventDefault();
+        var val = $(this).val();
+        $.get(val)
+            .done(function() {
+                if (val) {
+                    $logo.attr('src', val);
+                    logoObj.logoLink = val;
+                    localStorage.setItem('logoObj', JSON.stringify(logoObj));
+                } else {
+                    $logo.attr('src', $defaultLogoSrc);
+                }
+            }).fail(function() {
+                alert('image not found');
+            });
+    });
+
+    // Logo link Return to default
+    $('.js__customizer-logo-link__return-to-default').on('click', function(e) {
+        e.preventDefault();
+        $logo.attr('src', $defaultLogoSrc);
+        $logoInput.val('');
+        delete logoObj.logoLink;
+        localStorage.setItem('logoObj', JSON.stringify(logoObj));
+    });
 });
