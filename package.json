@@ -1,9 +1,9 @@
 {
   "name": "theme_t3kit_customizer",
-  "version": "0.0.2",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Javascript framework for live editing t3kit Theme with color picker (instead of backend forms)",
   "license": "MIT",
-  "repository": "",
+  "repository": "t3kit/theme_t3kit_customizer",
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-assemble": "0.4.0",
@@ -23,7 +23,7 @@
     "time-grunt": "1.3.0"
   },
   "engines": {
-    "node": ">=4.2.4",
+    "node": ">=5.6.0",
     "npm": ">=3.5.0"
   }
 }
