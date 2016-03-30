@@ -1,5 +1,5 @@
 ##theme_t3kit_customizer
-[![GitHub release](https://img.shields.io/github/release/t3kit/theme_t3kit_customizer.svg?style=flat-square)](https://github.com/t3kit/theme_t3kit_customizer/releases)
+[![Release](https://img.shields.io/github/release/t3kit/theme_t3kit_customizer.svg?style=flat-square)](https://github.com/t3kit/theme_t3kit_customizer/releases)
 
 Javascript framework for live editing t3kit Theme with color picker (instead of backend forms)
 
@@ -19,9 +19,10 @@ _Note: You might need to use `sudo` before `npm` command to install packages glo
 
 ### Installation:
 
-First, clone repo:
+First, clone repo and update submodules:
 ```bash
 git clone git@github.com:t3kit/theme_t3kit_customizer.git
+git submodule update --init
 ```
 
 Next, install Bower/NPM dependencies:
