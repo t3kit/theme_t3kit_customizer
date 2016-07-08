@@ -1,4 +1,11 @@
 
+#### v1.4.0 `July 8, 2016`
+- **[UPDATE]** felayout_t3kit 1.4.0 ([619a5cb](https://github.com/t3kit/theme_t3kit_customizer/commit/619a5cb))
+- **[DOC]** add license file (Podio feature_24) ([8f58550](https://github.com/t3kit/theme_t3kit_customizer/commit/8f58550))
+- **[FIX]** fix typo, Livereload -> Live Reload (Podio bug #29) ([293adb1](https://github.com/t3kit/theme_t3kit_customizer/commit/293adb1))
+
+***
+
 #### v1.3.0 `June 22, 2016`
 - **[UPDATE]** felayout_t3kit 1.3.0 ([3cd42a0](https://github.com/t3kit/theme_t3kit_customizer/commit/3cd42a0))
 
