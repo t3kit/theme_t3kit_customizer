@@ -2,6 +2,8 @@
 
 [![Release](https://img.shields.io/github/release/t3kit/theme_t3kit_customizer.svg?style=flat-square)](https://github.com/t3kit/theme_t3kit_customizer/releases)
 
+[![Build Status](https://travis-ci.org/t3kit/theme_t3kit_customizer.svg?branch=master)](https://travis-ci.org/t3kit/theme_t3kit_customizer)
+
 Javascript framework for live editing t3kit Theme with color picker (instead of backend forms)
 
 **[t3kit live editing](http://t3kit.github.io/theme_t3kit_customizer)**
