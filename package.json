@@ -4,6 +4,11 @@
   "description": "Javascript framework for live editing t3kit Theme with color picker (instead of backend forms)",
   "license": "MIT",
   "repository": "t3kit/theme_t3kit_customizer",
+  "scripts": {
+    "check": "grunt check",
+    "gruntDefault": "grunt dev",
+    "bower": "bower install"
+  },
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-assemble": "0.4.0",

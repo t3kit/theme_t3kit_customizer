@@ -1,0 +1,17 @@
+git:
+  submodules: false
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+sudo: false
+language: node_js
+script:
+  - npm install bower
+  - npm run bower
+  - npm run gruntDefault
+  - npm run check
+node_js:
+  - v6
+branches:
+  only:
+    - master
