@@ -1,7 +1,7 @@
 module.exports = {
     options: {
         config: '.jscsrc',
-        force: true
+        // force: true
     },
     js: {
         src: ['dev/*.js']
