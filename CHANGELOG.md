@@ -1,4 +1,9 @@
 
+#### v1.6.0 `July 18, 2016`
+- **[UPDATE]** felayout_t3kit 1.5.0 ([3bfd475](https://github.com/t3kit/theme_t3kit_customizer/commit/3bfd475))
+
+***
+
 #### v1.5.0 `July 18, 2016`
 - **[DOC]** add Travis build status to readme file ([02a4d27](https://github.com/t3kit/theme_t3kit_customizer/commit/02a4d27))
 - **[UPDATE]** Bower dependencies ([642ec4a](https://github.com/t3kit/theme_t3kit_customizer/commit/642ec4a))
