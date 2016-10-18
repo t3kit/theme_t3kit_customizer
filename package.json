@@ -1,6 +1,6 @@
 {
   "name": "theme_t3kit_customizer",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Javascript framework for live editing t3kit Theme with color picker (instead of backend forms)",
   "license": "MIT",
   "repository": "t3kit/theme_t3kit_customizer",
