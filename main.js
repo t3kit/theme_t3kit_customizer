@@ -4,8 +4,6 @@
 // Global variables (jshint):
 
 /*global touchSupport*/
-/*global isAndroid*/
-///*global isIOS*/
 // =================================
 
 jQuery(function($) {
@@ -14,51 +12,75 @@ jQuery(function($) {
     var $mainNavigation = $('.js__main-navigation');
     var $openSubMenuLink = $('.js__main-navigation__open-sub-menu-link');
     var $mainNavigationItemsList = $mainNavigation.find('.js__main-navigation__items-list').children('li');
-
-    //var $mainNavigationItemsListSub = ('.main-navigation__item._sub');
+    var $secondNavLevel = $('.second-navigation-level');
+    var $thirdNavLevel = $('.third-navigation-level');
+    var $openThirdMenuLink = $('.js__main-navigation__open-third-menu-link');
     var $dropdownMenuWithColumns = $('.js__dropdown-menu-with-columns .js__main-navigation__item._sub');
+
     if (!touchSupport) {
         $dropdownMenuWithColumns.hover(function() {
             $(this).toggleClass('open');
         });
     }
 
+    // Set class for third-navigation-level to handle position on left or right
+    var setThirdMenuPosition = function() {
+        if ($thirdNavLevel.length) {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                $secondNavLevel.each(function() {
+                    var offsetRight = $(window).width() - $(this).offset().left - $(this).outerWidth();
+                    var secondNavLevelWidth = $(this).width();
+                    var thirdNavLevelWidth = $(this).find($thirdNavLevel).width();
+                    if (offsetRight < thirdNavLevelWidth) {
+                        $(this).find($thirdNavLevel).css('left', -secondNavLevelWidth);
+                    } else {
+                        $(this).find($thirdNavLevel).css('left', secondNavLevelWidth);
+                    }
+                });
+            } else {
+                $thirdNavLevel.css('left', 'auto');
+            }
+        }
+    };
+    // Initial call for function
+    setThirdMenuPosition();
     // Cleanup function to clean unneeded classes
-    var cleanup = function cleanup() {
-        if ($mainNavigationItemsList.hasClass('_open-mobile-dropdown')) {
-            $mainNavigationItemsList.removeClass('_open-mobile-dropdown');
-        }
-        if ($mainNavigationItemsList.hasClass('_open-tablet-dropdown')) {
-            $mainNavigationItemsList.removeClass('_open-tablet-dropdown');
-        }
-        if ($html.hasClass('mobile-menu-opened')) {
-            $html.removeClass('mobile-menu-opened');
+    var cleanup = function() {
+        $mainNavigation.find('.js__main-navigation__items-list').find('li').removeClass('_open-mobile-dropdown _open-tablet-dropdown');
+        $html.removeClass('mobile-menu-opened');
+
+        if (window.matchMedia('(min-width: 992px)').matches) {
+            $('.js__navigation__items-wrp').show();
+        } else {
+            $('.js__navigation__items-wrp').hide();
         }
 
-        if (isAndroid && screen.width < 992 && !$html.hasClass('mobile-menu-opened')) {
-            $('.js__navigation__items-wrp').hide();
-        } else if (!isAndroid /* or with 'isIOS' variable instead of '!isAndroid' */ && $(window).width() < 992 && !$html.hasClass('mobile-menu-opened')) {
-            $('.js__navigation__items-wrp').hide();
-        } else {
-            $('.js__navigation__items-wrp').show();
-        }
+        //Set timeout for third menu position to load the width
+        window.setTimeout(function() {
+            setThirdMenuPosition();
+        }, 500);
     };
 
     // Add click event to dropdown link on mobile devices.
     $openSubMenuLink.on('click', function(e) {
         e.preventDefault();
-        // if (touchSupport && $(window).width() > 992) {
-        if ($(window).width() > 992) {
+        if (window.matchMedia('(min-width: 992px)').matches) {
             $mainNavigationItemsList.not($(this).parents()).removeClass('_open-tablet-dropdown');
             $(this).parents('.main-navigation__item').toggleClass('_open-tablet-dropdown');
-        }
-        if ($(window).width() < 992) {
+        } else {
             $(this).parents('.main-navigation__item').toggleClass('_open-mobile-dropdown');
         }
     });
 
-    $(window).on('orientationchange',function() {
-        cleanup();
+    // Add click event to second menu dropdown link on mobile devices.
+    $openThirdMenuLink.on('click', function(e) {
+        e.preventDefault();
+        if (window.matchMedia('(min-width: 992px)').matches) {
+            $('.main-navigation__sub-item').not($(this).parents('.main-navigation__sub-item')).removeClass('_open-tablet-dropdown');
+            $(this).parents('.main-navigation__sub-item').toggleClass('_open-tablet-dropdown');
+        } else {
+            $(this).parents('.main-navigation__sub-item').toggleClass('_open-mobile-dropdown');
+        }
     });
 
     var mobileMenuAnimationComplete = true;
@@ -73,6 +95,8 @@ jQuery(function($) {
         });
     });
 
+    // detect if we cross 992px window width.
+    window.matchMedia('(min-width: 992px)').addListener(cleanup);
 });
 
 // ====== class fo fixed main navigation bar   =======
@@ -81,18 +105,24 @@ jQuery(function($) {
 
     if (navbar.length) {
         var offsetTop = navbar.offset().top;
-        $(window).on('orientationchange',function() {
-            if ($(window).width() > 992 && touchSupport) {
+
+        // function that calculates offsetTop-value.
+        var calcOffsetTop = function() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
                 var navbarPos = navbar.css('position');
                 offsetTop = $('header').height() - (navbarPos === 'fixed' ? 0 : navbar.outerHeight());
             }
-        });
+        };
+
+        // detect if we cross 992px window width.
+        window.matchMedia('(min-width: 992px)').addListener(calcOffsetTop);
+
         $(window).on('load scroll', function() {
             var scrollPos = $(window).scrollTop();
             if (scrollPos > offsetTop) {
-                $('body:not(.main-navigation-fixed)').addClass('main-navigation-fixed');
+                $('body').addClass('main-navigation-fixed');
             } else {
-                $('body.main-navigation-fixed').removeClass('main-navigation-fixed');
+                $('body').removeClass('main-navigation-fixed');
             }
         });
     }
@@ -150,34 +180,38 @@ jQuery(function($) {
 
         // initialize swiper when document ready
         // http://idangero.us/swiper/api/
-        var swiper = new Swiper('.js__img-slider', {
-            nextButton: '.js__img-slider__btn-next',
-            prevButton: '.js__img-slider__btn-prev',
-            pagination: '.js__img-slider__pagination',
-            paginationClickable: true,
-            preloadImages: false,
-            lazyLoading: true,
-            watchSlidesVisibility: true,
-            lazyLoadingInPrevNext: true,
-            speed: 600
-        });
-        // Makes it possible to skip between slider images if they have links, using the tab button
-        swiper.container.on('focus', 'a', function(e) {
-            //Index of focused slide
-            var focusIndex = $(e.target).parents('.swiper-slide').index();
-            //Reset scrollLeft set by browser on focus
-            swiper.container.scrollLeft(0);
+        var $elem = $('.js__img-slider');
+        $elem.each(function() {
+            var time = $(this).attr('data-autoplay');
+            var slider = new Swiper($(this), {
+                nextButton: '.js__img-slider__btn-next',
+                prevButton: '.js__img-slider__btn-prev',
+                pagination: '.js__img-slider__pagination',
+                paginationClickable: true,
+                preloadImages: false,
+                lazyLoading: true,
+                watchSlidesVisibility: true,
+                lazyLoadingInPrevNext: true,
+                speed: 600,
+                autoplay: time
+            });
+            // Makes it possible to skip between slider images if they have links, using the tab button
+            slider.container.on('focus', 'a', function(e) {
+                //Index of focused slide
+                var focusIndex = $(e.target).parents('.swiper-slide').index();
+                //Reset scrollLeft set by browser on focus
+                slider.container.scrollLeft(0);
 
-            // IE fix
-            setTimeout(function() {
-                swiper.container.scrollLeft(0);
-            }, 0);
+                // IE fix
+                setTimeout(function() {
+                    slider.container.scrollLeft(0);
+                }, 0);
 
-            //Slide to focused slide
-            swiper.slideTo(focusIndex);
+                //Slide to focused slide
+                slider.slideTo(focusIndex);
+            });
         });
     });
-
 })(jQuery);
 
 (function($) {
@@ -248,6 +282,133 @@ jQuery(function($) {
                 noIos: true
             });
         }
+    });
+
+})(jQuery);
+
+/* global Swiper*/
+(function($) {
+    'use strict';
+    // document load event
+    $(document).ready(function() {
+        var $swiperContainerWrapper = $('.js__slider-container__wrapper');
+        $swiperContainerWrapper.each(function() {
+            $(this).children().wrap('<div class="swiper-slide slider-container__slide js__slider-container__slide"></div>');
+        });
+
+        var $swiperContainer = $('.js__slider-container__container');
+        $swiperContainer.each(function() {
+            var time = $(this).attr('data-autoplay');
+            var loopParam = $(this).attr('data-loop');
+            var amountOfSlides = parseInt($(this).attr('data-slidesperview'));
+            var effectName = $(this).attr('data-effect');
+            var transition = $(this).attr('data-speed');
+            var widthForMobile;
+            var widthForTablet;
+            var widthForLaptop;
+            var widthForMediumLaptop;
+            if (amountOfSlides >= 4) {
+                widthForMobile = 1,
+                widthForTablet = 2,
+                widthForLaptop = 3,
+                widthForMediumLaptop = 4;
+            } else if (amountOfSlides === 2) {
+                widthForMobile = 1,
+                widthForTablet = 1,
+                widthForLaptop = 1,
+                widthForMediumLaptop = 2;
+            } else if (amountOfSlides === 1) {
+                widthForMobile = 1,
+                widthForTablet = 1,
+                widthForLaptop = 1,
+                widthForMediumLaptop = 1;
+            } else {
+                widthForMobile = 1,
+                widthForTablet = 2,
+                widthForLaptop = 2,
+                widthForMediumLaptop = 3;
+            }
+            var slider = new Swiper($(this), {
+                containerModifierClass:'js__slider-container__container',
+                wrapperClass:'js__slider-container__wrapper',
+                slideClass:'js__slider-container__slide',
+                nextButton: $(this).parent().find('.js__slider-container__btn-next'),
+                prevButton: $(this).parent().find('.js__slider-container__btn-prev'),
+                pagination: $(this).parent().find('.js__slider-container__pagination'),
+                paginationClickable: true,
+                speed: parseInt(transition),
+                loop:loopParam,
+                autoplay: time,
+                effect:effectName,
+                watchSlidesVisibility: true,
+                spaceBetween: 20,
+                preloadImages: false,
+                lazyLoading: true,
+                lazyLoadingInPrevNext: true,
+                slidesPerView: amountOfSlides,
+                breakpoints:{
+                    // Responsive breakpoints
+                    480: {
+                        slidesPerView:widthForMobile
+                    },
+                    767: {
+                        slidesPerView:widthForTablet
+                    },
+                    992: {
+                        slidesPerView:widthForLaptop
+                    },
+                    1024:{
+                        slidesPerView:widthForMediumLaptop
+                    }
+                },
+                coverflow: {
+                    rotate: 90,
+                    stretch: 0,
+                    depth: 200,
+                    modifier: 1,
+                    slideShadows: false
+                },
+                cube: {
+                    slideShadows: false,
+                    shadow: false
+                },
+                fade: {
+                    crossFade: true
+                },
+                flip: {
+                    slideShadows: false,
+                    limitRotation: true
+                }
+            });
+            // Makes it possible to skip between slider images if they have links, using the tab button
+            slider.container.on('focus', 'a', function(e) {
+                //Index of focused slide
+                var focusIndex = $(e.target).parents('.slider-container__slide').index();
+                //Reset scrollLeft set by browser on focus
+                slider.container.scrollLeft(0);
+                // IE fix
+                setTimeout(function() {
+                    slider.container.scrollLeft(0);
+                }, 0);
+                //Slide to focused slide
+                slider.slideTo(focusIndex);
+            });
+        });
+    });
+})(jQuery);
+
+(function($) {
+    'use strict';
+
+    // document load event
+    $(document).ready(function() {
+
+        var $paragraph = $('.js__img-text-link');
+
+        $paragraph.dotdotdot({
+            height: 40
+        });
+
     });
 
 })(jQuery);
