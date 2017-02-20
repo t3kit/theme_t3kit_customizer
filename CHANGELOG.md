@@ -1,4 +1,9 @@
 
+#### v1.9.0 `February 20, 2017`
+- **[UPDATE]** felayout_t3kit 1.8.0 ([091a104](https://github.com/t3kit/theme_t3kit_customizer/commit/091a104))
+
+***
+
 #### v1.8.0 `January 24, 2017`
 - **[UPDATE]** felayout_t3kit 1.7.0 ([9caf454](https://github.com/t3kit/theme_t3kit_customizer/commit/9caf454))
 
